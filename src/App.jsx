@@ -1,13 +1,12 @@
 import './App.css'
-import Buttons from './components/buttons'
-import { HomePage } from './components/homepage'
+import { HomePage } from './pages/homepage'
+import { HomePageDesktop } from './pages/homepagedesktop'
 
 function App() {
 
   return (
     <>
-     
-     <HomePage/>
+     <HomePageDesktop/>
     </>
   )
 }

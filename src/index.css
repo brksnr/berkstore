@@ -23,6 +23,9 @@
     @apply text-sm font-normal font-inter;
 }
 
+
+
+
 .btn-base {
     @apply font-inter text-white;
   }
