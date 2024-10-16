@@ -1,12 +1,13 @@
 import './App.css'
+import { ShopPage } from './layout/shoppage'
 import { HomePage } from './pages/homepage'
-import { HomePageDesktop } from './pages/homepagedesktop'
 
 function App() {
 
   return (
     <>
-     <HomePageDesktop/>
+    <HomePage/>
+    <ShopPage/>
     </>
   )
 }
