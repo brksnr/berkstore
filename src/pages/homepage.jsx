@@ -1,4 +1,14 @@
 import { Header } from "../layout/header";
+import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+    Carousel,
+    CarouselItem,
+    CarouselControl,
+    CarouselIndicators,
+    CarouselCaption,
+  } from 'reactstrap';
+import Buttons from "../components/buttons";
 
 export function HomePage() {
     const products = [
@@ -68,6 +78,76 @@ export function HomePage() {
         },
     ];
 
+    // karosel
+
+    const items = [
+        {
+          src: '/images/karosel/karoselitem1.png',
+          altText: 'Slide 1',
+          caption: 'Slide 1',
+          key: 1,
+        },
+        {
+          src: '/images/karosel/karoselitem1.png',
+          altText: 'Slide 2',
+          caption: 'Slide 2',
+          key: 2,
+        },
+        {
+          src: '/images/karosel/karoselitem1.png',
+          altText: 'Slide 3',
+          caption: 'Slide 3',
+          key: 3,
+        },
+      ];
+
+      const [activeIndex, setActiveIndex] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const next = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === items.length - 1 ? 0 : activeIndex + 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const previous = () => {
+    if (animating) return;
+    const nextIndex = activeIndex === 0 ? items.length - 1 : activeIndex - 1;
+    setActiveIndex(nextIndex);
+  };
+
+  const goToIndex = (newIndex) => {
+    if (animating) return;
+    setActiveIndex(newIndex);
+  };
+
+  const slides = items.map((item) => {
+    return (
+      <CarouselItem
+        onExiting={() => setAnimating(true)}
+        onExited={() => setAnimating(false)}
+        key={item.src}
+      >
+        <div className="">
+                <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:items-start">
+                    <p className="h6 text-white">SUMMER 2020</p>
+                    <p className="text-center h1 text-white flex flex-col lg:flex-row lg:gap-5">Vita Classic<p>Product</p></p> 
+                    <p className="text-center h6 text-white lg:text-left">We know how large objects<br/> will act, but things on a<br/> small scale.</p>
+                    <p className="h5 text-white">$16.48</p>
+                    <Buttons variant="primary" size="medium" label="ADD TO CART" />
+                 </div>
+                 <img className="" src={item.src} alt={item.altText} />
+        </div>
+        
+        <CarouselCaption
+          captionText={item.caption}
+          captionHeader={item.caption}
+        />
+      </CarouselItem>
+    );
+  });
+
+
 
     return (
         <>
@@ -129,6 +209,41 @@ export function HomePage() {
         </div>      
         </div>
         </div>
+
+
+
+
+        <Carousel
+        className=" bg-blue-500"
+      activeIndex={activeIndex}
+      next={next}
+      previous={previous}
+      {...HomePage}
+    >
+      <CarouselIndicators
+        items={items}
+        activeIndex={activeIndex}
+        onClickHandler={goToIndex}
+      />
+      {slides}
+      <CarouselControl
+        direction="prev"
+        directionText="Previous"
+        onClickHandler={previous}
+      />
+      <CarouselControl
+        direction="next"
+        directionText="Next"
+        onClickHandler={next}
+      />
+    </Carousel>
+
+
+
+
+
+
+         
         </>
     )
 }
