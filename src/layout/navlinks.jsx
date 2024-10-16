@@ -43,7 +43,7 @@ export function NavLinks ({ isMenuOpen, toggleMenu }) {
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
                                 <div className="flex items-center gap-1 ">
-                                    <i class="fa-regular fa-user"></i>
+                                <i class="fa-regular fa-user"></i>
                                     <p>Login</p>
                                     <p>/</p>
                                 </div>
@@ -57,6 +57,7 @@ export function NavLinks ({ isMenuOpen, toggleMenu }) {
                         </div>
             </div>
             <div className="flex gap-3 lg:hidden">
+                <i class="fa-regular fa-user"></i>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <i className="fa-solid fa-cart-shopping"></i>
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>

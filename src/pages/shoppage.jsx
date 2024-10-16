@@ -6,7 +6,7 @@ export function ShopPage() {
         { id: 1, title: "CLOTHS", count: "5 Items", imageUrl: "/images/homfull.png" },
         { id: 2, title: "SHOES", count: "7 Items", imageUrl: "/images/homfull.png" },
         { id: 3, title: "ACCESSORIES", count: "3 Items", imageUrl: "/images/homfull.png" },
-        { id: 3, title: "ACCESSORIES", count: "3 Items", imageUrl: "/images/homfull.png" },
+        { id: 4, title: "ACCESSORIES", count: "4 Items", imageUrl: "/images/homfull.png" },
         
     ];
     const products = [
@@ -35,7 +35,7 @@ export function ShopPage() {
             newPrice: "$20.00", 
         },
         { 
-            id: 3, 
+            id: 4, 
             image: "/images/hshop3.png", 
             title: "Data Science", 
             department: "Mathematics", 
@@ -43,7 +43,7 @@ export function ShopPage() {
             newPrice: "$20.00", 
         },
         { 
-            id: 3, 
+            id: 5, 
             image: "/images/hshop3.png", 
             title: "Data Science", 
             department: "Mathematics", 
@@ -51,7 +51,7 @@ export function ShopPage() {
             newPrice: "$20.00", 
         },
         { 
-            id: 3, 
+            id: 6, 
             image: "/images/hshop3.png", 
             title: "Data Science", 
             department: "Mathematics", 
@@ -59,7 +59,7 @@ export function ShopPage() {
             newPrice: "$20.00", 
         },
         { 
-            id: 3, 
+            id: 7, 
             image: "/images/hshop3.png", 
             title: "Data Science", 
             department: "Mathematics", 
@@ -67,7 +67,7 @@ export function ShopPage() {
             newPrice: "$20.00", 
         },
         { 
-            id: 3, 
+            id: 8, 
             image: "/images/hshop3.png", 
             title: "Data Science", 
             department: "Mathematics", 

@@ -31,7 +31,7 @@
 }
 
 .shopCardButton {
-  @apply font-inter font-bold text-black w-36 h-12 bg-white  ml-10 mb-5;
+  @apply font-inter font-bold text-black w-36 h-12 bg-white ml-10 mb-5;
 }
 
 
