@@ -146,9 +146,6 @@ export function HomePage() {
       </CarouselItem>
     );
   });
-
-
-
     return (
         <>
         <Header/>
@@ -209,10 +206,6 @@ export function HomePage() {
         </div>      
         </div>
         </div>
-
-
-
-
         <Carousel
         className=" bg-blue-500"
       activeIndex={activeIndex}
@@ -237,6 +230,20 @@ export function HomePage() {
         onClickHandler={next}
       />
     </Carousel>
+    <div>
+        <div>
+                <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:items-start">
+                    <p className="grayP ">SUMMER 2020</p>
+                    <p className="text-center h1  flex flex-col gap-2 lg:flex-row lg:gap-5">Part of the<p>Neural</p>Universe</p> 
+                    <p className="text-center grayP  lg:text-left">We know how large objects<br/> will act, but things on a<br/> small scale.</p>
+                    <div className="flex flex-col gap-4">
+                        <Buttons variant="primary" size="medium" label="BUY NOW" />
+                        <Buttons variant="transparent" size="medium" label="Learn More" />
+                    </div>
+                    <img src="/images/partofneural.png"/>
+                </div>
+        </div>
+    </div>
 
 
 
