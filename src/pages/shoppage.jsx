@@ -94,19 +94,19 @@ export function ShopPage() {
                 </div>
             )}
     <div className="flex flex-col items-center gap-3 bg-gray-100 py-10 lg:px-24">
-        <div className="flex flex-col items-center gap-10 py-10 lg:flex-row w-full justify-between">
+        <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:w-full lg:justify-between lg:px-11">
             <h5 className="h3">Shop</h5>
             <div className="flex gap-2">
                 <p className="font-bold">Home</p>
                 <p><i class="fa-solid fa-angle-right"></i></p>
                 <p>Shop</p>
             </div>
-    </div>
+        </div>
         <div className="flex flex-col gap-4 lg:flex-row justify-between px-24">
             {shop1.map((item) => (
                 <div
                     key={item.id}
-                    className="bg-cover bg-center w-80 h-80 flex items-center justify-center"
+                    className="bg-cover bg-center w-80 h-80 flex items-center justify-center lg:w-60 lg:h-60"
                     style={{ backgroundImage: `url(${item.imageUrl})` }}
                 >
                     <div className="flex flex-col items-center gap-4 h4 text-white">
@@ -117,7 +117,7 @@ export function ShopPage() {
             ))}
         </div>  
      </div>
-     <div className="flex flex-col items-center gap-10 py-10 lg:flex-row justify-between px-24">
+     <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:justify-between lg:px-32">
             <div>
                 <p className="font-inter font-bold text-gray-500">Showing all 12 results</p>
             </div>
@@ -133,7 +133,7 @@ export function ShopPage() {
             </div>
         </div>
 
-        <div className="bg-white-500 flex justify-center ">
+        <div className="bg-white-500 flex flex-col items-center">
         <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
             {products.map((product) => (
                 <div key={product.id} className="flex flex-col items-center w-80">
@@ -156,8 +156,15 @@ export function ShopPage() {
                     </div>
                 </div>
             ))}
-        </div>      
         </div>
+        <div className="mb-10 flex font-inter">
+                    <button className="border-2 bg-gray-100 w-16 h-16 rounded-l-lg grayPt">First</button> 
+                    <button className="border w-10 h-16">1</button> 
+                    <button className="border bg-green-500 w-10 h-16 ">2</button> 
+                    <button className="border w-10 h-16">3</button>
+                    <button className="border-2 w-16 h-16 rounded-r-lg greenP">Next</button>
+        </div>
+        </div> 
         <Clients/>
         <Footer/>
         </>
