@@ -1,6 +1,4 @@
-import { useState } from "react";
-
-export function NavLinks ({ isMenuOpen, toggleMenu }) {
+export function NavLinks ({ toggleMenu }) {
     
     return (
         <>

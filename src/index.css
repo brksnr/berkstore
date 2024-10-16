@@ -29,6 +29,13 @@
 .greenP {
   @apply text-sm font-bold font-inter text-green-500;
 }
+.greenPt {
+  @apply text-sm font-normal font-inter text-green-500;
+}
+
+.grayPt {
+  @apply text-sm font-normal font-inter text-gray-500;
+}
 
 .shopCardButton {
   @apply font-inter font-bold text-black w-36 h-12 bg-white ml-10 mb-5;
