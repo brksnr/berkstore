@@ -16,9 +16,6 @@ function App() {
         <Route exact path="/shop">
            <ShopPage/>
         </Route>
-        <Route exact path="/footer">
-           <Footer/>
-        </Route>
     </Switch>
     </Router>
     </>

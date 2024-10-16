@@ -1,8 +1,8 @@
 export function Footer() {
     return (
         <>
-        <div className="flex flex-col items-center my-16">
-        <div className="flex flex-col gap-6 lg:flex-row lg:gap-32">
+        <div className="flex flex-col ml-20 my-16 lg:items-center lg:ml-0">
+        <div className="flex flex-col gap-6 lg:flex-row lg:gap-36">
             <div className="flex flex-col items-start gap-4">
                 <h3 className="h4">Get In Touch</h3>
                     <p className="grayP">the quick fox jumps over the<br className="lg:block"/> lazy dog</p>

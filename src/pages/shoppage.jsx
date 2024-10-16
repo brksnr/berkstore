@@ -1,26 +1,33 @@
+import { useState } from "react";
 import Buttons from "../components/buttons";
 import { Footer } from "../layout/footer";
+import { NavLinks } from "../layout/navlinks";
+import { Clients } from "../layout/clients";
 
 export function ShopPage() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     const shop1 = [
-        { id: 1, title: "CLOTHS", count: "5 Items", imageUrl: "/images/homfull.png" },
-        { id: 2, title: "SHOES", count: "7 Items", imageUrl: "/images/homfull.png" },
-        { id: 3, title: "ACCESSORIES", count: "3 Items", imageUrl: "/images/homfull.png" },
-        { id: 4, title: "ACCESSORIES", count: "4 Items", imageUrl: "/images/homfull.png" },
-        
+        { id: 1, title: "CLOTHS", count: "5 Items", imageUrl: "/images/shop/shop1.png" },
+        { id: 2, title: "SHOES", count: "7 Items", imageUrl: "/images/shop/shop2.png" },
+        { id: 3, title: "ACCESSORIES", count: "3 Items", imageUrl: "/images/shop/shop3.png" },
+        { id: 4, title: "ACCESSORIES", count: "4 Items", imageUrl: "/images/shop/shop4.png" },
+        { id: 4, title: "ACCESSORIES", count: "10 Items", imageUrl: "/images/shop/shop5.png" },  
     ];
     const products = [
         { 
             id: 1, 
-            image: "/images/hshop1.png", 
+            image: "/images/bestseller/bs1.png", 
             title: "Graphic Design", 
-            department: "English Department", 
+            department: "English Department",
             oldPrice: "$16.48", 
             newPrice: "$6.48" 
         },
         { 
             id: 2, 
-            image: "/images/hshop2.png", 
+            image: "/images/bestseller/bs2.png", 
             title: "Web Development", 
             department: "Computer Science", 
             oldPrice: "$25.00", 
@@ -28,7 +35,7 @@ export function ShopPage() {
         },
         { 
             id: 3, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs3.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -36,7 +43,7 @@ export function ShopPage() {
         },
         { 
             id: 4, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs4.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -44,7 +51,7 @@ export function ShopPage() {
         },
         { 
             id: 5, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs5.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -52,7 +59,7 @@ export function ShopPage() {
         },
         { 
             id: 6, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs6.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -60,7 +67,7 @@ export function ShopPage() {
         },
         { 
             id: 7, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs7.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -68,7 +75,7 @@ export function ShopPage() {
         },
         { 
             id: 8, 
-            image: "/images/hshop3.png", 
+            image: "/images/bestseller/bs5.png", 
             title: "Data Science", 
             department: "Mathematics", 
             oldPrice: "$30.00", 
@@ -77,12 +84,20 @@ export function ShopPage() {
     ];
     return(
         <>
-        
+    <NavLinks isMenuOpen={isMenuOpen} toggleMenu={toggleMenu}/>
+    {isMenuOpen && (
+                <div className="flex flex-col items-center gap-8 text-gray-500 h3 py-16 lg:hidden">
+                    <p className="text-black">Home</p>
+                    <p>Product</p>
+                    <p>Pricing</p>           
+                    <p>Contact</p>
+                </div>
+            )}
     <div className="flex flex-col items-center gap-3 bg-gray-100 py-10 lg:px-24">
         <div className="flex flex-col items-center gap-10 py-10 lg:flex-row w-full justify-between">
             <h5 className="h3">Shop</h5>
             <div className="flex gap-2">
-                <p>Home</p>
+                <p className="font-bold">Home</p>
                 <p><i class="fa-solid fa-angle-right"></i></p>
                 <p>Shop</p>
             </div>
@@ -91,7 +106,7 @@ export function ShopPage() {
             {shop1.map((item) => (
                 <div
                     key={item.id}
-                    className="bg-cover bg-center w-96 h-96 flex items-center justify-center"
+                    className="bg-cover bg-center w-80 h-80 flex items-center justify-center"
                     style={{ backgroundImage: `url(${item.imageUrl})` }}
                 >
                     <div className="flex flex-col items-center gap-4 h4 text-white">
@@ -119,13 +134,13 @@ export function ShopPage() {
         </div>
 
         <div className="bg-white-500 flex justify-center ">
-        <div className="flex flex-col gap-4 lg:flex-row flex-wrap">
+        <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
             {products.map((product) => (
-                <div key={product.id} className="flex flex-col items-center w-64">
-                    <div>
-                        <img src={product.image} alt={product.title}/>
+                <div key={product.id} className="flex flex-col items-center w-80">
+                    <div >
+                    <img  src={product.image} alt={product.title}/>
                     </div>
-                    <div className="flex flex-col items-center gap-5 py-10">
+                    <div className="flex flex-col items-center gap-2 pt-3 pb-16">
                         <p className="h5">{product.title}</p>
                         <p className="grayP">{product.department}</p>
                         <p>
@@ -143,6 +158,8 @@ export function ShopPage() {
             ))}
         </div>      
         </div>
+        <Clients/>
+        <Footer/>
         </>
     )
 }
