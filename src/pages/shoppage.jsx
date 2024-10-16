@@ -127,10 +127,10 @@ export function ShopPage() {
                     </div>
                     <div className="flex flex-col items-center gap-5 py-10">
                         <p className="h5">{product.title}</p>
-                        <p className="font-inter font-bold text-gray-500">{product.department}</p>
+                        <p className="grayP">{product.department}</p>
                         <p>
-                            <span className="font-inter font-bold text-gray-500 ">{product.oldPrice}</span> 
-                            <span className="text-green-500 font-bold"> {product.newPrice}</span>
+                            <span className="grayP">{product.oldPrice}</span> 
+                            <span className="greenP"> {product.newPrice}</span>
                         </p>
                         <div className="flex gap-1">
                             <button className="w-4 h-4 rounded-full bg-blue-500"></button>

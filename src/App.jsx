@@ -1,13 +1,26 @@
+import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
 import './App.css'
-import { ShopPage } from './layout/shoppage'
 import { HomePage } from './pages/homepage'
+import { ShopPage } from './pages/shoppage'
+import { Footer } from './layout/footer'
 
 function App() {
 
   return (
     <>
-    <HomePage/>
-    <ShopPage/>
+    <Router>
+      <Switch>
+        <Route exact path="/home">
+          <HomePage/>
+        </Route>
+        <Route exact path="/shop">
+           <ShopPage/>
+        </Route>
+        <Route exact path="/footer">
+           <Footer/>
+        </Route>
+    </Switch>
+    </Router>
     </>
   )
 }

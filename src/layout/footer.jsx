@@ -1,41 +1,45 @@
 export function Footer() {
-    const links = `font-inter font-bold text-gray-500`
     return (
         <>
-        <div className="flex flex-col items-center border gap-4">
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col items-center gap-4 my-16">
+        <div className="flex flex-col gap-6 ">
             <div className="flex flex-col items-start gap-4">
                 <h3 className="h4">Get In Touch</h3>
-                    <p>the quick fox jumps over the lazy dog</p>
-                <div className="flex gap-4">
+                    <p className="grayP">the quick fox jumps over the lazy dog</p>
+                <div className="flex gap-4 text-blue-500 text-xl">
                     <i class="fa-brands fa-facebook"></i>
                     <i class="fa-brands fa-twitter"></i>
                     <i class="fa-brands fa-instagram"></i>
                 </div>
             </div>
-            <div className="flex flex-col border items-start gap-4 ">
+            <div className="flex flex-col items-start gap-4 ">
                 <h3 className="h4">Company info</h3>
-                <p className={links}>About Us</p>
-                <p className={links}>Carrier</p>
-                <p className={links}>We are hiring</p>
-                <p className={links}>Blog</p>
+                <p className="grayP">About Us</p>
+                <p className="grayP">Carrier</p>
+                <p className="grayP">We are hiring</p>
+                <p className="grayP">Blog</p>
             </div>
-            <div className="flex flex-col border items-start gap-4">
+            <div className="flex flex-col items-start gap-4">
                 <h3 className="h4">Features</h3>
-                <p className={links}>Business Marketing</p>
-                <p className={links}>Live Chat</p>
-                <p className={links}>User Analytic</p>
-                <p className={links}>Unlimited Support</p>
+                <p className="grayP">Business Marketing</p>
+                <p className="grayP">Live Chat</p>
+                <p className="grayP">User Analytic</p>
+                <p className="grayP">Unlimited Support</p>
             </div>
-            <div className="flex flex-col border items-start gap-4">
+            <div className="flex flex-col items-start gap-4">
                 <h3 className="h4">Resources</h3>
-                <p className={links}>IOS & Android</p>
-                <p className={links}>Watch a Demo</p>
-                <p className={links}>Customers</p>
-                <p className={links}>API</p>
+                <p className="grayP">IOS & Android</p>
+                <p className="grayP">Watch a Demo</p>
+                <p className="grayP">Customers</p>
+                <p className="grayP">API</p>
             </div>
         </div>
         </div>
+
+        <div className="text-center grayP bg-gray-100 py-12">
+                <p>Made With Love By</p>
+                <p>Figmaland All Right Reserved</p>
+            </div>
         
         </>
     )

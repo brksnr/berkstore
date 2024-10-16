@@ -11,17 +11,26 @@
     @apply text-4xl font-bold font-inter;
 }
 .h3{
-    @apply text-3xl font-normal font-inter;
+    @apply text-3xl font-bold font-inter;
 }
 .h4 {
     @apply text-2xl font-bold font-inter;
 }
 .h5 {
-    @apply text-xl font-normal font-inter;
+    @apply text-xl font-bold font-inter;
 }
 .h6{
-    @apply text-sm font-normal font-inter;
+    @apply text-sm font-bold font-inter;
 }
+
+.grayP {
+  @apply text-sm font-bold font-inter text-gray-500;
+}
+.greenP {
+  @apply text-sm font-bold font-inter text-green-500;
+}
+
+
 
 
 
