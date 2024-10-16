@@ -9,6 +9,7 @@ import {
     CarouselCaption,
   } from 'reactstrap';
 import Buttons from "../components/buttons";
+import { Footer } from "../layout/footer";
 
 export function HomePage() {
 
@@ -30,7 +31,7 @@ export function HomePage() {
           category: "Google",
           tag1: "Popular",
           tag2: "Updated",
-          title: "The Future of Tech #2",
+          title: "Loudest à la Madison #1 (L'integral)",
           description: "Exploring the advancements in technology and innovation. Stay ahead with us.",
           date: "12 March 2021",
           comments: 8,
@@ -41,7 +42,7 @@ export function HomePage() {
             category: "Google",
             tag1: "Popular",
             tag2: "Updated",
-            title: "The Future of Tech #2",
+            title: "Loudest à la Madison #1 (L'integral)",
             description: "Exploring the advancements in technology and innovation. Stay ahead with us.",
             date: "12 March 2021",
             comments: 8,
@@ -120,20 +121,14 @@ export function HomePage() {
     const items = [
         {
           src: '/images/karosel/karoselitem1.png',
-          altText: 'Slide 1',
-          caption: 'Slide 1',
           key: 1,
         },
         {
           src: '/images/karosel/karoselitem1.png',
-          altText: 'Slide 2',
-          caption: 'Slide 2',
           key: 2,
         },
         {
           src: '/images/karosel/karoselitem1.png',
-          altText: 'Slide 3',
-          caption: 'Slide 3',
           key: 3,
         },
       ];
@@ -165,15 +160,17 @@ export function HomePage() {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <div className="">
+        <div className="lg:flex lg:justify-evenly">
                 <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:items-start">
                     <p className="h6 text-white">SUMMER 2020</p>
-                    <p className="text-center h1 text-white flex flex-col lg:flex-row lg:gap-5">Vita Classic<p>Product</p></p> 
-                    <p className="text-center h6 text-white lg:text-left">We know how large objects<br/> will act, but things on a<br/> small scale.</p>
-                    <p className="h5 text-white">$16.48</p>
-                    <Buttons variant="primary" size="medium" label="ADD TO CART" />
+                    <p className="text-center h1 text-white flex flex-col lg:gap-5 lg:items-start">Vita Classic<p>Product</p></p> 
+                    <p className="text-center h6 text-white">We know howd large objects<br className="lg:hidden"/> will act, but things on a<br/>small scale.</p>
+                    <div className="flex flex-col gap-7 lg:flex-row lg:items-center">
+                        <p className="h5 text-white">$16.48</p>
+                        <Buttons variant="primary" size="medium" label="ADD TO CART" />
+                    </div>
                  </div>
-                 <img className="" src={item.src} alt={item.altText} />
+                 <img className="lg:w-96" src={item.src} alt={item.altText} />
         </div>
         
         <CarouselCaption
@@ -188,15 +185,15 @@ export function HomePage() {
         <Header/>
         <div className="flex flex-col items-center bg-gray-50 pb-20">
             <div>
-                <div className="text-center my-10 flex flex-col gap-4  ">
+                <div className="text-center my-10 flex flex-col gap-4">
                     <h4 className="h4">EDITOR'S PICK</h4>
-                    <p className="grayP">Problems trying to resolve <br/>the conflict between </p>
+                    <p className="grayP">Problems trying to resolve <br className="lg:hidden"/>the conflict between </p>
                 </div>
-                <div className="flex flex-col gap-4 ">
-                    <div className="bg-[url('/images/shopcard1.png')] w-80 h-96 bg-cover flex items-end">
+                <div className="flex flex-col gap-4 lg:flex-row ">
+                    <div className="bg-[url('/images/shopcard1.png')] w-80 h-96 bg-cover flex items-end lg:h-auto">
                     <button className="shopCardButton">MEN</button>
                     </div>
-                    <div className="bg-[url('/images/shopcard2.png')] w-80 h-96 bg-cover flex items-end">
+                    <div className="bg-[url('/images/shopcard2.png')] w-80 h-96 bg-cover flex items-end lg:h-auto">
                     <button className="shopCardButton">WOMEN</button>
                     </div>
                         <div className="flex flex-col gap-4">
@@ -215,16 +212,16 @@ export function HomePage() {
         <div className="flex flex-col items-center mt-10 gap-10">
             <div className="flex flex-col gap-3 text-center">
             <h3 className="h4 text-gray-500">Featured Products</h3>
-            <h3 className="h4">BESTSELLER <br/> PRODUCTS</h3>
-            <p className="grayP">Problems trying to resolve the<br/>conflict between</p>
+            <h3 className="h4">BESTSELLER <br className="lg:hidden"/> PRODUCTS</h3>
+            <p className="grayP">Problems trying to resolve the<br className="lg:hidden"/>conflict between</p>
             </div>
-        <div>
+        <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
             {products.map((product) => (
                 <div key={product.id} className="flex flex-col items-center w-80">
                     <div >
                     <img  src={product.image} alt={product.title}/>
                     </div>
-                    <div className="flex flex-col items-center gap-3 pt-5 pb-16">
+                    <div className="flex flex-col items-center gap-2 pt-3 pb-16">
                         <p className="h5">{product.title}</p>
                         <p className="grayP">{product.department}</p>
                         <p>
@@ -269,65 +266,67 @@ export function HomePage() {
     </Carousel>
     <div>
         <div>
-                <div className="flex flex-col gap-7 items-center mt-40 mb-10lg:items-start">
-                    <p className="grayP ">SUMMER 2020</p>
-                    <p className="text-center h1  flex flex-col gap-2 lg:flex-row lg:gap-5">Part of the<p>Neural</p>Universe</p> 
-                    <p className="text-center grayP  lg:text-left">We know how large objects<br/> will act, but things on a<br/> small scale.</p>
-                    <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:flex-row lg:mt-0">
+                    <img className="hidden lg:flex lg:w-2/6 lg:ml-40" src="/images/partofneural2.png"/>
+                    <div className="flex flex-col items-center gap-4 lg:flex lg:flex-col lg:items-start lg:gap-4 lg:ml-28">
+                        <p className="grayP ">SUMMER 2020</p>
+                        <p className="text-center h1  flex flex-col gap-2 lg:flex-row">Part of the<p>Neural</p>Universe</p> 
+                        <p className="text-center grayP ">We know how large objects<br className="lg:hidden"/> will act, but things on a<br className="lg:hidden"/> small scale.</p>
+                    <div className="flex flex-col gap-4 lg:flex-row">
                         <Buttons variant="primary" size="medium" label="BUY NOW" />
                         <Buttons variant="transparent" size="medium" label="Learn More" />
                     </div>
-                    <img src="/images/partofneural.png"/>
+                    </div>
+                    <img className="lg:hidden" src="/images/partofneural.png"/>
                 </div>
         </div>
     </div>
 
     <div>
-        <div>
+        <div className="lg:flex lg:flex-col lg:items-center">
             <div>
-                <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:items-start">
+                <div className="flex flex-col gap-7 items-center mt-40 mb-10 lg:gap-3 lg:mt-16">
                     <p className="greenP">Parctice Advice</p>
-                    <p className="text-center h1  flex flex-col gap-2 lg:flex-row lg:gap-5">Featured<p>Products</p></p> 
-                    <p className="text-center grayP  lg:text-left">Problems trying to resolve the<br/>conflict between the two major<br/></p>
+                    <p className="text-center h1 flex flex-col gap-2 lg:flex-row lg:gap-5">Featured<p>Products</p></p> 
+                    <p className="text-center grayP  lg:text-left">Problems trying to resolve the<br className="lg:hidden"/>conflict between the two major<p>realms of Classical physics: newtonian mechanics</p><br/></p>
                 </div>
             </div>
-            <div className="flex flex-col gap-8">
+    <div className="flex flex-col gap-8 lg:flex-wrap lg:flex-row">
       {featuredItems.map((item) => (
         <div key={item.id} className="flex flex-col items-center">
-          <div 
+            <div 
             className="bg-cover bg-center w-80 h-80" 
             style={{ backgroundImage: `url(${item.image})` }}
-          >
+            >
             <button className="bg-red-500 h6 text-white w-14 rounded-sm ml-5 mt-3">
               New
             </button>
-          </div>
-          <div className="border border-gray w-80 flex flex-col pl-5 py-4 gap-3">
+        </div>
+        <div className="border border-gray w-80 flex flex-col pl-5 py-4 gap-3">
             <div className="flex gap-3">
               <p className="greenPt">{item.category}</p>
               <p className="grayPt">{item.tag1}</p>
               <p className="grayPt">{item.tag2}</p>
             </div>
-            <p className="h5">{item.title}</p>
-            <p className="grayPt">{item.description}</p>
+                <p className="h5">{item.title}</p>
+                <p className="grayPt">{item.description}</p>
             <div className="flex justify-between">
-              <div className="grayPt">
+                <div className="grayPt">
                 <i className="fa-solid fa-clock text-green-500"></i> {item.date}
-              </div>
-              <div className="grayPt pr-12">{item.comments} Comments</div>
             </div>
-            <div className="flex items-center gap-2">
-              Learn More
-              <i className="fa-solid fa-arrow-right text-green-500"></i>
+                <div className="grayPt pr-12">{item.comments} Comments</div>
+            </div>
+                <div className="flex items-center gap-2">
+                Learn More
+                <i className="fa-solid fa-arrow-right text-green-500"></i>
             </div>
           </div>
         </div>
-      ))}
-    </div>
+            ))}
+        </div>
         </div>
     </div>
-
-
+    <Footer/>
         </>
     )
 }
