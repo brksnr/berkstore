@@ -77,3 +77,19 @@
   .btn-large {
     @apply py-4 px-14 text-xl font-bold w-max;
   }
+
+  .bg::before {
+    @apply absolute bg-pink-100 rounded-full;
+    content: "";
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+}
+
+.bg img {
+    position: relative;
+    z-index: 10;
+}

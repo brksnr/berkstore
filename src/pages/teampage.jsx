@@ -11,7 +11,6 @@ export function TeamPage() {
         { name: "Ronald Richards", role: "Mitsubishi", image: "/images/team/team3.png" }
     ];
 
-    // Her üç elemanı bir alt diziye böl
     const groupedMembers = [];
     for (let i = 0; i < teamMembers.length; i += 3) {
         groupedMembers.push(teamMembers.slice(i, i + 3));

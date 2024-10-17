@@ -6,6 +6,7 @@ import { Footer } from './layout/footer'
 import { ProductPage } from './pages/productpage'
 import { ContactPage } from './pages/contactpage'
 import { TeamPage } from './pages/teampage'
+import { AboutUsPage } from './pages/aboutus'
 
 function App() {
 
@@ -27,6 +28,9 @@ function App() {
         </Route>
         <Route exact path="/team">
            <TeamPage/>
+        </Route>
+        <Route exact path="/aboutus">
+           <AboutUsPage/>
         </Route>
     </Switch>
     </Router>
