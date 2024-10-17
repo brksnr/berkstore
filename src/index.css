@@ -71,7 +71,7 @@
   }
   
   .btn-medium {
-    @apply py-4 px-11;
+    @apply py-4 px-11 w-max;
   }
   
   .btn-large {
