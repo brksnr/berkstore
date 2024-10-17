@@ -36,12 +36,13 @@ export function NavLinks ({ toggleMenu }) {
                             <p>Contact</p>
                             <p>Pages</p>
                 </div>
+                
             </div>
             <div className="hidden lg:flex">
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
                                 <div className="flex items-center gap-1 ">
-                                <i class="fa-regular fa-user"></i>
+                                    <i class="fa-regular fa-user"></i>
                                     <p>Login</p>
                                     <p>/</p>
                                 </div>

@@ -91,6 +91,22 @@ export function ShopPage() {
                     <p>Product</p>
                     <p>Pricing</p>           
                     <p>Contact</p>
+                    <p>Shop</p>
+                    <div className="flex flex-col gap-9 items-center text-blue-400">
+                            <div className="flex gap-1 font-inter">
+                                <div className="flex items-center gap-1 ">
+                                    <i class="fa-regular fa-user"></i>
+                                    <p>Login</p>
+                                    <p>/</p>
+                                </div>
+                                <p>Register</p>
+                            </div>
+                            <div className="flex flex-col gap-9">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid fa-bars"></i>
+                            <i class="fa-regular fa-heart"></i>
+                            </div>
+                        </div>
                 </div>
             )}
     <div className="flex flex-col items-center gap-3 bg-gray-100 py-10 lg:px-24">
