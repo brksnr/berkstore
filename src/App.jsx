@@ -5,6 +5,7 @@ import { ShopPage } from './pages/shoppage'
 import { Footer } from './layout/footer'
 import { ProductPage } from './pages/productpage'
 import { ContactPage } from './pages/contactpage'
+import { TeamPage } from './pages/teampage'
 
 function App() {
 
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route exact path="/contact">
            <ContactPage/>
+        </Route>
+        <Route exact path="/team">
+           <TeamPage/>
         </Route>
     </Switch>
     </Router>
