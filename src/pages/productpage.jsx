@@ -14,15 +14,7 @@ import { Footer } from "../layout/footer";
 const items = [
     {
       src: '/images/products/product1.png',
-      altText: 'Slide 1',
-      caption: 'Slide 1',
       key: 1,
-    },
-    {
-      src: '/images/products/product1.png',
-      altText: 'Slide 2',
-      caption: 'Slide 2',
-      key: 2,
     },
   ];
 const products = [
@@ -64,12 +56,7 @@ const products = [
 
 export function ProductPage() {
 
-  const texts = [
-    "the quick fox jumps over the lazy dog",
-    "the quick fox jumps over the lazy dog",
-    "the quick fox jumps over the lazy dog",
-    "the quick fox jumps over the lazy dog"
-];
+  const titles = ["the quick fox jumps over", "the quick fox jumps over"];
   
     const [activeIndex, setActiveIndex] = useState(0);
   const [animating, setAnimating] = useState(false);
@@ -97,9 +84,8 @@ export function ProductPage() {
         onExiting={() => setAnimating(true)}
         onExited={() => setAnimating(false)}
         key={item.src}
-        className=""
       >
-        <img className="" src={item.src} alt={item.altText} />
+        <img src={item.src} alt={item.altText} />
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -116,11 +102,10 @@ export function ProductPage() {
             <i class="fa-solid fa-angle-right"></i>
             <p>Shop</p>
         </div>
-        <div className="bg-gray-100">
-            <div className="flex flex-col items-start transform scale-90">
+        <div className="bg-gray-100 lg:flex lg:justify-center">
+            <div className="flex flex-col items-start transform scale-90 lg:flex-row lg:w-1/2">
                 <div>
       <Carousel
-      className=""
       activeIndex={activeIndex}
       next={next}
       previous={previous}
@@ -147,6 +132,7 @@ export function ProductPage() {
         <img src="/images/products/product2.png" className="w-24 h-24"/>
         </div>
             </div>
+            <div className=" lg:h-full lg:flex lg:flex-col">
                 <div className="flex flex-col">
                     <h4 className="h5">Floating Phone</h4>
                     <div className="flex gap-1 items-center">
@@ -179,64 +165,52 @@ export function ProductPage() {
                 </div>
             </div>
         </div>
+        </div>
 
-        
-        <div className="transform scale-90 flex flex-col gap-10">
-          <div className="flex gap-14 items-center justify-center">
+        <div className="flex gap-14 items-center justify-center">
               <p className="grayP underline">Descripton</p>
               <p className="grayP">Additional Information</p>
               <p className="grayP flex gap-2">Reviews<p className="greenP">(0)</p></p>   
           </div>
+        <div className="transform scale-90 flex flex-col gap-10 lg:flex-row lg:justify-center lg:items-start ">
 
-
-          <div>
+          <div className="lg:w-2/6">
             <img src="/images/products/product3.png" className="rounded-xl"/>
           </div>
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 lg:w-3/12">
             <h4 className="h4">the quick fox jumps over </h4>
             <p className="grayP">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.
             <br/><br/>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.
             <br/><br/>Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</p>
           </div>
           <div className="flex flex-col gap-10">
-          <div className="flex flex-col gap-10">
-            <h4 className="h4">the quick fox jumps over </h4>
-            <div className="grayP flex flex-col gap-3">
-                {texts.map((item, index) => (
-                    <div key={index} className="flex gap-3 items-center">
-                        <i className="fa-solid fa-angle-right"></i>
-                        <p>{item}</p>
-                    </div>
-                ))}
-            </div>
+  {titles.map((title, titleIndex) => (
+    <div key={titleIndex} className="flex flex-col gap-3">
+      <h4 className="h4">{title}</h4>
+      <div className="grayP flex flex-col gap-3">
+        {titles.map((item, index) => (
+          <div key={index} className="flex gap-3 items-center">
+            <i className="fa-solid fa-angle-right"></i>
+            <p>{item}</p>
           </div>
-            <div className="flex flex-col gap-10">
-            <div className="flex flex-col gap-10">
-            <h4 className="h4">the quick fox jumps over </h4>
-            <div className="grayP flex flex-col gap-3">
-                {texts.map((item, index) => (
-                    <div key={index} className="flex gap-3 items-center">
-                        <i className="fa-solid fa-angle-right"></i>
-                        <p>{item}</p>
-                    </div>
-                ))}
-              </div>
-            </div>
-            </div>
-          </div>
+        ))}
+      </div>
+    </div>
+  ))}
+</div>
         </div>
 
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 lg:flex lg:justify-center">
                 <div className="transform scale-90">
-                    <div className="text-center">
+                    <div className="text-center lg:text-left">
                         <h4 className="h4">BESTSELLER PRODUCTS</h4>
                         <div className="border-t border-gray-400 w-full my-4"></div>
                     </div>
 
-                    <div className="flex flex-col gap-5">
+                    <div className="flex flex-col gap-5 lg:flex-row">
                         {products.map((product) => (
                           <div key={product.id} className="flex flex-col gap-3 bg-white ">
-                            <img src={product.image} alt={product.title} className="object-cover h-96"/>
+                            <img src={product.image} alt={product.title} className="object-cover h-96 lg:w-96"/>
                                 <div className="pb-20 pl-5">
                                 <h5 className="h5">{product.title}</h5>
                                     <p className="grayP">{product.department}</p>
