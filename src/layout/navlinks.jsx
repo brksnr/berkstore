@@ -1,5 +1,4 @@
-export function NavLinks ({ toggleMenu }) {
-    
+export function NavLinks ({ toggleMenu }) {    
     return (
         <>
           <div className="hidden lg:flex justify-between p-4 bg-blue-500"> 

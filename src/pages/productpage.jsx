@@ -16,6 +16,10 @@ const items = [
       src: '/images/products/product1.png',
       key: 1,
     },
+    {
+      src: '/images/products/product1.png',
+      key: 2,
+    },
   ];
 const products = [
     {
@@ -85,7 +89,7 @@ export function ProductPage() {
         onExited={() => setAnimating(false)}
         key={item.src}
       >
-        <img src={item.src} alt={item.altText} />
+        <img src={item.src} alt={item.altText}/>
         <CarouselCaption
           captionText={item.caption}
           captionHeader={item.caption}
@@ -102,8 +106,8 @@ export function ProductPage() {
             <i class="fa-solid fa-angle-right"></i>
             <p>Shop</p>
         </div>
-        <div className="bg-gray-100 lg:flex lg:justify-center">
-            <div className="flex flex-col items-start transform scale-90 lg:flex-row lg:w-1/2">
+        <div className="bg-gray-100 lg:flex lg:pl-80 lg:gap-16">
+            <div className="flex flex-col items-start transform scale-90 lg:scale-100 lg:flex-row lg:w-3/12">
                 <div>
       <Carousel
       activeIndex={activeIndex}
@@ -132,7 +136,9 @@ export function ProductPage() {
         <img src="/images/products/product2.png" className="w-24 h-24"/>
         </div>
             </div>
-            <div className=" lg:h-full lg:flex lg:flex-col">
+            
+        </div>
+        <div className=" lg:h-full lg:flex lg:flex-col transform scale-90">
                 <div className="flex flex-col">
                     <h4 className="h5">Floating Phone</h4>
                     <div className="flex gap-1 items-center">
@@ -149,7 +155,7 @@ export function ProductPage() {
                     <p className="grayP">Availability :</p>
                     <p className="greenP">In Stock</p>
                 </div>
-                <p className="grayP">Met minim Mollie non desert Alamo est sit cliquey dolor do met sent. RELIT official consequent door ENIM RELIT Mollie. Excitation venial consequent sent nostrum met.</p>
+                <p className="grayP">Met minim Mollie non desert Alamo est sit cliquey dolor<br className="hidden lg:flex"/> do met sent. RELIT official consequent door ENIM RELIT Mollie.<br className="hidden lg:flex"/> Excitation venial consequent sent nostrum met.</p>
                 <div className="border-t border-gray-400 w-full my-4"></div>
                 <div className="flex gap-2 mb-10">
                     <button className="w-7 h-7 rounded-full bg-blue-500"></button>
@@ -165,9 +171,8 @@ export function ProductPage() {
                 </div>
             </div>
         </div>
-        </div>
 
-        <div className="flex gap-14 items-center justify-center">
+        <div className="flex gap-14 items-center justify-center my-10">
               <p className="grayP underline">Descripton</p>
               <p className="grayP">Additional Information</p>
               <p className="grayP flex gap-2">Reviews<p className="greenP">(0)</p></p>   
