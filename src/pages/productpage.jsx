@@ -1,4 +1,3 @@
-import Buttons from "../components/buttons";
 import React, { useState } from 'react';
 import {
   Carousel,
@@ -10,6 +9,7 @@ import {
 import { NavLinks } from "../layout/navlinks";
 import { Clients } from "../layout/clients";
 import { Footer } from "../layout/footer";
+import { Button } from '../components/ui/button';
 
 const items = [
     {
@@ -164,7 +164,7 @@ export function ProductPage() {
                     <button className="w-7 h-7 rounded-full bg-black"></button>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Buttons variant="primary" size="small" label="Select Options"/>
+                <Button variant="default" size="sm">Select Options</Button>
                     <button className="w-8 h-8 rounded-full border-1 border-gray-200"><i className="fa-regular fa-heart"></i></button>
                     <button className="w-8 h-8 rounded-full border-1 border-gray-200"><i className="fa-solid fa-cart-shopping"></i></button>
                     <button className="w-8 h-8 rounded-full border-1 border-gray-200"><i className="fa-solid fa-eye"></i></button>

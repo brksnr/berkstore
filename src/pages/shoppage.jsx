@@ -1,8 +1,10 @@
 import { useState } from "react";
-import Buttons from "../components/buttons";
 import { Footer } from "../layout/footer";
 import { NavLinks } from "../layout/navlinks";
 import { Clients } from "../layout/clients";
+import { Button } from '../components/ui/button';
+import { Paginations } from "../components/pagination";
+import { CustomSelect } from "../components/customSelects";
 
 export function ShopPage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -102,9 +104,9 @@ export function ShopPage() {
                                 <p>Register</p>
                             </div>
                             <div className="flex flex-col gap-9">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid fa-magnifying-glass"></i>
                             <i className="fa-solid fa-bars"></i>
-                            <i class="fa-regular fa-heart"></i>
+                            <i className="fa-regular fa-heart"></i>
                             </div>
                         </div>
                 </div>
@@ -114,7 +116,7 @@ export function ShopPage() {
             <h5 className="h3">Shop</h5>
             <div className="flex gap-2">
                 <p className="font-bold">Home</p>
-                <p><i class="fa-solid fa-angle-right"></i></p>
+                <p><i className="fa-solid fa-angle-right"></i></p>
                 <p>Shop</p>
             </div>
         </div>
@@ -140,12 +142,13 @@ export function ShopPage() {
             <div className="flex gap-3 items-center font-inter">
                 <p className="text-gray-500">Views:</p>
                 <div className="flex gap-3">
-                <button className="border border-gray-400 rounded w-10 h-10"><i class="fa-solid fa-border-all"></i></button> 
-                <button className="border border-gray-400 rounded w-10 h-10"><i class="fa-solid fa-list"></i></button> 
+                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-border-all"></i></button> 
+                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-list"></i></button> 
                 </div>
             </div>
-            <div>
-            <Buttons variant="primary" size="small" label="Filter" />
+            <div className="flex gap-4 items-center">
+            <CustomSelect/>
+            <Button variant="default" size="sm">Filter</Button>
             </div>
         </div>
 
@@ -174,11 +177,7 @@ export function ShopPage() {
             ))}
         </div>
         <div className="mb-10 flex font-inter">
-                    <button className="border-2 bg-gray-100 w-16 h-16 rounded-l-lg grayPt">First</button> 
-                    <button className="border w-10 h-16">1</button> 
-                    <button className="border bg-green-500 w-10 h-16 ">2</button> 
-                    <button className="border w-10 h-16">3</button>
-                    <button className="border-2 w-16 h-16 rounded-r-lg greenP">Next</button>
+                    <Paginations/>
         </div>
         </div> 
         <Clients/>

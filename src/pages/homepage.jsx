@@ -1,5 +1,6 @@
 import { Header } from "../layout/header";
 import React, { useState } from 'react';
+import { Button } from '../components/ui/button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     Carousel,
@@ -8,7 +9,6 @@ import {
     CarouselIndicators,
     CarouselCaption,
   } from 'reactstrap';
-import Buttons from "../components/buttons";
 import { Footer } from "../layout/footer";
 
 export function HomePage() {
@@ -167,7 +167,7 @@ export function HomePage() {
                     <p className="text-center h6 text-white">We know howd large objects<br className="lg:hidden"/> will act, but things on a<br/>small scale.</p>
                     <div className="flex flex-col gap-7 lg:flex-row lg:items-center">
                         <p className="h5 text-white">$16.48</p>
-                        <Buttons variant="primary" size="medium" label="ADD TO CART" />
+                        <Button variant="default" size="lg">SHOP NOW</Button>
                     </div>
                  </div>
                  <img className="lg:w-96" src={item.src} alt={item.altText} />
@@ -273,8 +273,8 @@ export function HomePage() {
                         <p className="text-center h1  flex flex-col gap-2 lg:flex-row">Part of the<p>Neural</p>Universe</p> 
                         <p className="text-center grayP ">We know how large objects<br className="lg:hidden"/> will act, but things on a<br className="lg:hidden"/> small scale.</p>
                     <div className="flex flex-col gap-4 lg:flex-row">
-                        <Buttons variant="primary" size="medium" label="BUY NOW" />
-                        <Buttons variant="transparent" size="medium" label="Learn More" />
+                    <Button variant="default" size="lg">BUY NOW</Button>
+                    <Button className="text-blue-500" variant="outline" size="lg">Learn More</Button>
                     </div>
                     </div>
                     <img className="lg:hidden" src="/images/partofneural.png"/>

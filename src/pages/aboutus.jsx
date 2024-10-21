@@ -1,11 +1,10 @@
 import { useState } from "react";
-import Buttons from "../components/buttons";
 import { NavLinks } from "../layout/navlinks";
 import { VideoCard } from "../components/videocard";
 import { TeamPage } from "./teampage";
 import { Clients } from "../layout/clients";
 import { Footer } from "../layout/footer";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { Button } from '../components/ui/button';
 
 export function AboutUsPage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -47,7 +46,7 @@ export function AboutUsPage() {
                                     <h5 className="h6 hidden lg:flex">ABOUT COMPANY</h5>
                                     <h1 className="h2">ABOUT US</h1>
                                     <p className="grayP lg:text-left">We know how large<br className="lg:hidden"/> objects will act, but things<br className="lg:hidden"/> on a small scale just do <br/>not act that way.</p>
-                                    <Buttons variant="primary" size="medium" label="Get Quote Now"/>
+                                    <Button variant="default" size="lg">Get Quote Now</Button>
                                 </div>
                                 <div className="bg lg:bg2 relative inline-block lg:w-1/2">
                                     <img src="/images/aboutus/about1.png" className=""/>
