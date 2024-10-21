@@ -7,6 +7,8 @@ import { ProductPage } from './pages/productpage'
 import { ContactPage } from './pages/contactpage'
 import { TeamPage } from './pages/teampage'
 import { AboutUsPage } from './pages/aboutus'
+import SignUpForm from './components/loginform'
+
 
 function App() {
 
@@ -31,6 +33,9 @@ function App() {
         </Route>
         <Route exact path="/aboutus">
            <AboutUsPage/>
+        </Route>
+        <Route exact path="/form">
+           <SignUpForm/>
         </Route>
     </Switch>
     </Router>
