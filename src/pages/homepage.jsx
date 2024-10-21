@@ -37,7 +37,7 @@ export function HomePage() {
           comments: 8,
         },
         {
-            id: 2,
+            id: 3,
             image: "/images/featuredpic/featuredpic3.png",
             category: "Google",
             tag1: "Popular",

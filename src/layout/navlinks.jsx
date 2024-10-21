@@ -1,4 +1,17 @@
-export function NavLinks ({ toggleMenu }) {    
+import { Link } from 'react-router-dom';
+import {
+    NavigationMenu,
+    NavigationMenuContent,
+    NavigationMenuIndicator,
+    NavigationMenuItem,
+    NavigationMenuLink,
+    NavigationMenuList,
+    NavigationMenuTrigger,
+    NavigationMenuViewport,
+    navigationMenuTriggerStyle,
+  } from "@/components/ui/navigation-menu"
+
+export function NavLinks ({ toggleMenu }) {  
     return (
         <>
           <div className="hidden lg:flex justify-between p-4 bg-blue-500"> 
@@ -25,15 +38,64 @@ export function NavLinks ({ toggleMenu }) {
             <div className="flex items-center gap-24">
                 <h1 className="h2">BerkStore</h1>
                 <div className=" hidden lg:flex gap-4 font-inter">
-                            <p>Home</p>
-                                <div className="flex items-center gap-2">
-                                 <p>Shop</p>
-                                 <i class="fa-solid fa-caret-down"></i>
-                                </div>
-                            <p>About</p>
-                            <p>Blog</p>
-                            <p>Contact</p>
-                            <p>Pages</p>
+                <NavigationMenu>
+  <NavigationMenuList>
+  <NavigationMenuLink asChild>
+            <Link  className={navigationMenuTriggerStyle()}  to="/">
+              Home
+            </Link>
+    </NavigationMenuLink>
+    <NavigationMenuItem>
+      <NavigationMenuTrigger>
+        <Link to="Shop">
+        Shop
+        </Link>
+        </NavigationMenuTrigger>
+      <NavigationMenuContent>
+        <NavigationMenuLink>
+            <div className="flex gap-28 w-96 pl-10">
+                   <div className="flex flex-col gap-7 py-4">
+                        <p className="font-bold">Erkek</p>
+                    <div className="flex flex-col gap-2 grayP">
+                        <p>Bags</p>
+                        <p>Belts</p>
+                        <p>Cosmetics</p>
+                    </div>
+                   </div>
+                   <div className="flex flex-col gap-7 py-4">
+                        <p className="font-bold">Kadın</p>
+                    <div className="flex flex-col gap-2 grayP">
+                        <p>Bags</p>
+                        <p>Belts</p>
+                        <p>Cosmetics</p>
+                    </div>
+                   </div>
+            </div>
+        </NavigationMenuLink>
+      </NavigationMenuContent>
+    </NavigationMenuItem>
+    <NavigationMenuLink asChild>
+        <Link  className={navigationMenuTriggerStyle()} to="/aboutus">
+              About
+        </Link>      
+    </NavigationMenuLink>
+    <NavigationMenuLink asChild>
+        <Link  className={navigationMenuTriggerStyle()} to="/">
+              Blog
+        </Link>      
+    </NavigationMenuLink>
+    <NavigationMenuLink asChild>
+        <Link  className={navigationMenuTriggerStyle()} to="/contact">
+              Contact
+        </Link>
+    </NavigationMenuLink>
+    <NavigationMenuLink asChild>
+        <Link  className={navigationMenuTriggerStyle()} to="/">
+              Pages
+        </Link>
+    </NavigationMenuLink>
+  </NavigationMenuList>
+</NavigationMenu>
                 </div>
                 
             </div>
@@ -61,6 +123,14 @@ export function NavLinks ({ toggleMenu }) {
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>
             </div>
         </div>
+        
         </>
     )
 }
+
+
+    
+
+
+
+
