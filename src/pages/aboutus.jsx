@@ -5,6 +5,7 @@ import { TeamPage } from "./teampage";
 import { Clients } from "../layout/clients";
 import { Footer } from "../layout/footer";
 import { Button } from '../components/ui/button';
+import { Link } from "react-router-dom";
 
 export function AboutUsPage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,10 +19,11 @@ export function AboutUsPage() {
         {isMenuOpen && (
                 <div className="flex flex-col bg-gray-100 items-center gap-8 text-gray-500 h3 py-16 lg:hidden">
                     <p className="text-black">Home</p>
-                    <p>Product</p>
-                    <p>Pricing</p>           
-                    <p>Contact</p>
-                    <p>Shop</p>
+                    <Link to="/"><p>Home</p></Link>
+                    <Link to="/product"><p>Product</p></Link>
+                    <Link to="/"><p>Pricing</p></Link>
+                    <Link to="/contact"><p>Contact</p></Link>
+                    <Link to="/shop"><p>Shop</p></Link>
                     <div className="flex flex-col gap-9 items-center text-blue-400">
                             <div className="flex gap-1 font-inter">
                                 <div className="flex items-center gap-1 ">

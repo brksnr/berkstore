@@ -1,8 +1,10 @@
+import { NavLinks } from '@/layout/navlinks';
 import { Button } from '../components/ui/button';
 
 export function ContactPage() {
     return (
         <>
+        <NavLinks/>
             <div className="flex items-center justify-center min-h-screen">
                     <div className="w-7/12 h-1/2 max-w-lg">
                             <div className="items-center text-center flex flex-col gap-4">

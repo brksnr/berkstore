@@ -1,3 +1,5 @@
+import { NavLinks } from "@/layout/navlinks";
+
 export function TeamPage() {
     const teamMembers = [
         { name: "Jacop Jones", role: "Mitsubishi", image: "/images/team/team1.png" },
@@ -18,6 +20,7 @@ export function TeamPage() {
 
     return (
         <>
+        <NavLinks/>
             <div>
                 <div className="flex flex-col items-center gap-10">
                     <div className="flex justify-center">

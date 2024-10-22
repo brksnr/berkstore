@@ -10,6 +10,7 @@ import { NavLinks } from "../layout/navlinks";
 import { Clients } from "../layout/clients";
 import { Footer } from "../layout/footer";
 import { Button } from '../components/ui/button';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 const items = [
     {
@@ -55,9 +56,6 @@ const products = [
       newPrice: "$6.48"
     },
   ];
-  
-
-
 export function ProductPage() {
 
   const titles = ["the quick fox jumps over", "the quick fox jumps over"];

@@ -2,18 +2,22 @@ import { Link } from 'react-router-dom';
 import {
     NavigationMenu,
     NavigationMenuContent,
-    NavigationMenuIndicator,
     NavigationMenuItem,
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-    NavigationMenuViewport,
     navigationMenuTriggerStyle,
   } from "@/components/ui/navigation-menu"
+import { useState } from 'react';
 
-export function NavLinks ({ toggleMenu }) {  
+export function NavLinks () {  
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
     return (
         <>
+        
           <div className="hidden lg:flex justify-between p-4 bg-blue-500"> 
             <div className="flex justify-between gap-4 font-inter">
                 <div><i class="fa-solid fa-phone"></i> (225) 555-0118</div>
@@ -99,6 +103,7 @@ export function NavLinks ({ toggleMenu }) {
                 </div>
                 
             </div>
+            
             <div className="hidden lg:flex">
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
@@ -123,7 +128,15 @@ export function NavLinks ({ toggleMenu }) {
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>
             </div>
         </div>
-        
+        {isMenuOpen && (
+                <div className="flex flex-col items-center gap-8 text-inter text-gray-500 h3 py-16 lg:hidden">
+                    <Link to="/"><p>Home</p></Link>
+                    <Link to="/product"><p>Product</p></Link>
+                    <Link to="/"><p>Pricing</p></Link>
+                    <Link to="/contact"><p>Contact</p></Link>
+                    <Link to="/shop"><p>Shop</p></Link>
+                </div>
+            )}
         </>
     )
 }

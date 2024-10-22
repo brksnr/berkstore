@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Footer } from "../layout/footer";
 import { NavLinks } from "../layout/navlinks";
 import { Clients } from "../layout/clients";
@@ -7,10 +6,6 @@ import { Paginations } from "../components/pagination";
 import { CustomSelect } from "../components/customSelects";
 
 export function ShopPage() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen);
-    };
     const shop1 = [
         { id: 1, title: "CLOTHS", count: "5 Items", imageUrl: "/images/shop/shop1.png" },
         { id: 2, title: "SHOES", count: "7 Items", imageUrl: "/images/shop/shop2.png" },
@@ -86,31 +81,7 @@ export function ShopPage() {
     ];
     return(
         <>
-    <NavLinks isMenuOpen={isMenuOpen} toggleMenu={toggleMenu}/>
-    {isMenuOpen && (
-                <div className="flex flex-col items-center gap-8 text-gray-500 h3 py-16 lg:hidden">
-                    <p className="text-black">Home</p>
-                    <p>Product</p>
-                    <p>Pricing</p>           
-                    <p>Contact</p>
-                    <p>Shop</p>
-                    <div className="flex flex-col gap-9 items-center text-blue-400">
-                            <div className="flex gap-1 font-inter">
-                                <div className="flex items-center gap-1 ">
-                                    <i class="fa-regular fa-user"></i>
-                                    <p>Login</p>
-                                    <p>/</p>
-                                </div>
-                                <p>Register</p>
-                            </div>
-                            <div className="flex flex-col gap-9">
-                            <i className="fa-solid fa-magnifying-glass"></i>
-                            <i className="fa-solid fa-bars"></i>
-                            <i className="fa-regular fa-heart"></i>
-                            </div>
-                        </div>
-                </div>
-            )}
+    <NavLinks/>
     <div className="flex flex-col items-center gap-3 bg-gray-100 py-10 lg:px-24">
         <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:w-full lg:justify-between lg:px-11">
             <h5 className="h3">Shop</h5>
