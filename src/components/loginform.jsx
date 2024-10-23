@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import { toast } from 'react-toastify'
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -14,35 +14,48 @@ import { setUser } from '../actions/clientActions';
 
 
 
+
 export default function LoginForm() {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
 
   const onSubmit = async (data) => {
     try {
+      setIsLoading(true);
       const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/login', {
         email: data.email,
         password: data.password
       });
       if (response.status === 200) {
-        toast.success('Login successful!');
         const userData = response.data;
+        const token = userData.token;
         console.log("giriş başarılı",userData);
+        if (data.remember) {
+          localStorage.setItem('token', token); // Token'ı localStorage'a kaydet
+        } else {
+          sessionStorage.setItem('token', token); // Token'ı sessionStorage'a kaydet
+        }
         dispatch(setUser(userData));
-        history.goBack();
+        toast.success('Login successful!');
+        setTimeout(() => {
+          history.goBack(); // Veya istediğiniz bir sayfaya yönlendirin
+        }, 2000);
       }
     } catch (error) {
       console.log("giriş başarısız", error);
       toast.error('Login failed. Please try again.');
     } finally {
+      setIsLoading(false);
     }
   }
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
+       <ToastContainer />
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>

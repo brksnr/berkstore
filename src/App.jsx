@@ -11,6 +11,7 @@ import { Provider } from 'react-redux'
 import store from './store'
 import LoginForm from './components/loginform'
 import { SomeComponent } from './pages/deneme'
+import { ToastContainer } from 'react-toastify'
 
 
 
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <>
+    <ToastContainer/>
      <Provider store={store}>
     <Router>
       <Switch>
@@ -49,7 +51,6 @@ function App() {
         <Route path="/deneme">
            <SomeComponent/>
         </Route>
-
     </Switch>
     </Router>
     </Provider>

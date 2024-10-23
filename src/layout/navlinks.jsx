@@ -9,12 +9,21 @@ import {
     navigationMenuTriggerStyle,
   } from "@/components/ui/navigation-menu"
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
+import md5 from 'md5';
 
 export function NavLinks () {  
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const user = useSelector((state) => state.client.user);
+    const emailHash = user && user.email ? md5(user.email.trim().toLowerCase()) : null;
+    const gravatarUrl = emailHash
+    ? `https://www.gravatar.com/avatar/${emailHash}?s=200&d=identicon`
+    : null; 
+    
+
     return (
         <>
         
@@ -101,18 +110,24 @@ export function NavLinks () {
   </NavigationMenuList>
 </NavigationMenu>
                 </div>
-                
             </div>
-            
             <div className="hidden lg:flex">
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
-                                <div className="flex items-center gap-1 ">
-                                    <i class="fa-regular fa-user"></i>
-                                    <Link to="/login"><p>Login</p></Link>
-                                    <p>/</p>
-                                </div>
-                                <Link to="/signup"><p>Register</p></Link>
+                            {user.name ? (
+                                            <div className="flex items-center gap-2">
+                                            {gravatarUrl && <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-10 h-10" />}
+                                            <p>{user.name}</p>
+                                            </div>
+                                          ) : (
+                                            <div className="flex items-center gap-1">
+                                            <i className="fa-regular fa-user"></i>
+                                            <Link to="/login"><p>Login</p></Link>
+                                            <p>/</p>
+                                            <Link to="/signup"><p>Register</p></Link>
+                                            </div>
+                                          )}
+                                
                             </div>
                             <div className="flex gap-9">
                             <i class="fa-solid fa-magnifying-glass"></i>
