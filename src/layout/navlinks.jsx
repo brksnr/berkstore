@@ -51,7 +51,7 @@ export function NavLinks () {
     </NavigationMenuLink>
     <NavigationMenuItem>
       <NavigationMenuTrigger>
-        <Link to="Shop">
+        <Link to="/Shop">
         Shop
         </Link>
         </NavigationMenuTrigger>
@@ -112,7 +112,7 @@ export function NavLinks () {
                                     <p>Login</p>
                                     <p>/</p>
                                 </div>
-                                <p>Register</p>
+                                <Link to="/form"><p>Register</p></Link>
                             </div>
                             <div className="flex gap-9">
                             <i class="fa-solid fa-magnifying-glass"></i>

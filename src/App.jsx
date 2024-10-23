@@ -6,13 +6,19 @@ import { ProductPage } from './pages/productpage'
 import { ContactPage } from './pages/contactpage'
 import { TeamPage } from './pages/teampage'
 import { AboutUsPage } from './pages/aboutus'
-import SignUpForm from './components/loginform'
+import SignUpForm from './components/signUpForm'
+import { Provider } from 'react-redux'
+import store from './store'
+import { LoginForm } from './components/loginform'
+
+
 
 
 function App() {
 
   return (
     <>
+     <Provider store={store}>
     <Router>
       <Switch>
       <Route exact path="/">
@@ -33,11 +39,15 @@ function App() {
         <Route exact path="/aboutus">
            <AboutUsPage/>
         </Route>
-        <Route exact path="/form">
+        <Route exact path="/signup">
            <SignUpForm/>
+        </Route>
+        <Route exact path="/login">
+           <LoginForm/>
         </Route>
     </Switch>
     </Router>
+    </Provider>
     </>
   )
 }

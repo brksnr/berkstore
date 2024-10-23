@@ -95,7 +95,7 @@ export function ShopPage() {
             {shop1.map((item) => (
                 <div
                     key={item.id}
-                    className="bg-cover bg-center w-80 h-80 flex items-center justify-center lg:w-60 lg:h-60"
+                    className="bg-cover bg-center w-80 h-80 flex items-center justify-center lg:w-72 lg:h-72"
                     style={{ backgroundImage: `url(${item.imageUrl})` }}
                 >
                     <div className="flex flex-col items-center gap-4 h4 text-white">

@@ -5,42 +5,17 @@ import { TeamPage } from "./teampage";
 import { Clients } from "../layout/clients";
 import { Footer } from "../layout/footer";
 import { Button } from '../components/ui/button';
-import { Link } from "react-router-dom";
 
 export function AboutUsPage() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const isHidden = true;
 
     return (
         <>
-        <NavLinks isMenuOpen={isMenuOpen} toggleMenu={toggleMenu}/>
-        {isMenuOpen && (
-                <div className="flex flex-col bg-gray-100 items-center gap-8 text-gray-500 h3 py-16 lg:hidden">
-                    <p className="text-black">Home</p>
-                    <Link to="/"><p>Home</p></Link>
-                    <Link to="/product"><p>Product</p></Link>
-                    <Link to="/"><p>Pricing</p></Link>
-                    <Link to="/contact"><p>Contact</p></Link>
-                    <Link to="/shop"><p>Shop</p></Link>
-                    <div className="flex flex-col gap-9 items-center text-blue-400">
-                            <div className="flex gap-1 font-inter">
-                                <div className="flex items-center gap-1 ">
-                                    <i class="fa-regular fa-user"></i>
-                                    <p>Login</p>
-                                    <p>/</p>
-                                </div>
-                                <p>Register</p>
-                            </div>
-                            <div className="flex flex-col gap-9">
-                            <i class="fa-solid fa-magnifying-glass"></i>
-                            <i className="fa-solid fa-bars"></i>
-                            <i class="fa-regular fa-heart"></i>
-                            </div>
-                        </div>
-                </div>
-            )}
+        <NavLinks/>
         <div>
                 <div className="lg:flex lg:justify-center">
                         <div className="flex flex-col items-center lg:flex lg:flex-row lg:justify-evenly">
