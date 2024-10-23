@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { SET_USER, SET_ROLES } from '../actions/clientActions';
+import { setUser, setRoles } from '../actions/clientActions'; // Güncelleme burada
 
 // Create Axios instance
 const api = axios.create({
@@ -52,34 +52,32 @@ const apiRequests = {
       const response = await api.post('/signup', data);
       return response.data;
     } catch (error) {
-      throw new Error(error.response ? error.response.data.message : 'Error signing up');
+      console.log("Error occurred while signing up:", error.response ? error.response.data : error.message);
+      throw error; // Hatanın dışarıya atılması, dışarıda yakalanabilmesi için
     }
   },
 };
 
 export default function SignUpForm() {
-  const [roles, setRoles] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
-
   const { register, handleSubmit, control, watch, formState: { errors } } = useForm({
     resolver: zodResolver(schema),
     defaultValues: {
-      role_id: '1', // Assuming '1' is the ID for Customer role
+      role_id: '3',
     }
   });
 
   const selectedRole = watch('role_id');
+  const [roles, setRolesState] = useState([]);
 
   useEffect(() => {
     const fetchRoles = async () => {
       try {
         const rolesData = await apiRequests.fetchRoles();
-        setRoles(rolesData);
+        setRolesState(rolesData); 
       } catch (error) {
-        console.error('Signup error:', error.message);
-        alert("Failed to load roles. Please try again.");
+        console.error('Error fetching roles:', error);
       }
     };
 
@@ -87,21 +85,28 @@ export default function SignUpForm() {
   }, []);
 
   const onSubmit = async (data) => {
-    setIsLoading(true);
     try {
-      const response = await apiRequests.signUp(data);
-      dispatch(SET_USER(response.user));
-      history.goBack(); // Go back to previous page
-      alert("You need to click the link in your email to activate your account!");
-      console.log(response);
+        const { confirmPassword, role_id, ...userData } = data; 
+        console.log("Data being sent before sending:", data);
+        const response = await apiRequests.signUp(userData);
+  
+        if (response && response.message === "User created. Check your email for activation instructions.") {
+            dispatch(setUser(userData)); 
+            dispatch(setRoles([role_id])); 
+            console.log('User saved in Redux:', userData);
+            console.log('Roles saved in Redux:', [role_id]);
+        } else {
+            console.error("Unexpected status code:", response.status);
+        }
     } catch (error) {
-      console.error('Signup error:', error.message);
-      alert("Failed to create account. Please try again.");
-    } finally {
-      setIsLoading(false);
+        console.error('Signup error:', error.message || error);
     }
-  };
+};
 
+
+
+  
+  
   return (
     <div className="flex min-h-screen w-full items-center justify-center px-4 py-12">
       <div className="mx-auto w-full max-w-lg">
@@ -215,9 +220,8 @@ export default function SignUpForm() {
           <button 
             type="submit" 
             className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600" 
-            disabled={isLoading}
           >
-            {isLoading ? 'Submitting...' : 'Sign Up'}
+            Sign Up
           </button>
         </form>
       </div>

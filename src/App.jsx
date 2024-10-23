@@ -24,25 +24,25 @@ function App() {
       <Route exact path="/">
       <HomePage />
       </Route>
-        <Route exact path="/shop">
+        <Route path="/shop">
            <ShopPage/>
         </Route>
-        <Route exact path="/product">
+        <Route path="/product">
            <ProductPage/>
         </Route>
-        <Route exact path="/contact">
+        <Route path="/contact">
            <ContactPage/>
         </Route>
-        <Route exact path="/team">
+        <Route path="/team">
            <TeamPage/>
         </Route>
-        <Route exact path="/aboutus">
+        <Route path="/aboutus">
            <AboutUsPage/>
         </Route>
-        <Route exact path="/signup">
+        <Route path="/signup">
            <SignUpForm/>
         </Route>
-        <Route exact path="/login">
+        <Route path="/login">
            <LoginForm/>
         </Route>
     </Switch>

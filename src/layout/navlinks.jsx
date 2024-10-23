@@ -112,7 +112,7 @@ export function NavLinks () {
                                     <p>Login</p>
                                     <p>/</p>
                                 </div>
-                                <Link to="/form"><p>Register</p></Link>
+                                <Link to="/signup"><p>Register</p></Link>
                             </div>
                             <div className="flex gap-9">
                             <i class="fa-solid fa-magnifying-glass"></i>
