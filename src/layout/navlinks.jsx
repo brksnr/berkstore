@@ -109,7 +109,7 @@ export function NavLinks () {
                             <div className="flex gap-1 font-inter">
                                 <div className="flex items-center gap-1 ">
                                     <i class="fa-regular fa-user"></i>
-                                    <p>Login</p>
+                                    <Link to="/login"><p>Login</p></Link>
                                     <p>/</p>
                                 </div>
                                 <Link to="/signup"><p>Register</p></Link>

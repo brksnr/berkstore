@@ -9,7 +9,8 @@ import { AboutUsPage } from './pages/aboutus'
 import SignUpForm from './components/signUpForm'
 import { Provider } from 'react-redux'
 import store from './store'
-import { LoginForm } from './components/loginform'
+import LoginForm from './components/loginform'
+import { SomeComponent } from './pages/deneme'
 
 
 
@@ -45,6 +46,10 @@ function App() {
         <Route path="/login">
            <LoginForm/>
         </Route>
+        <Route path="/deneme">
+           <SomeComponent/>
+        </Route>
+
     </Switch>
     </Router>
     </Provider>

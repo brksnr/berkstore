@@ -5,7 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { setUser, setRoles } from '../actions/clientActions'; // Güncelleme burada
+import { setUser, setRoles } from '../actions/clientActions';
 
 // Create Axios instance
 const api = axios.create({
@@ -70,6 +70,8 @@ export default function SignUpForm() {
 
   const selectedRole = watch('role_id');
   const [roles, setRolesState] = useState([]);
+  const [isLoading, setLoading] = useState(false); // Loading durumu eklendi
+  const [errorMessage, setErrorMessage] = useState(""); // Hata mesajı için durum
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -85,6 +87,8 @@ export default function SignUpForm() {
   }, []);
 
   const onSubmit = async (data) => {
+    setLoading(true); 
+    setErrorMessage(""); 
     try {
         const { confirmPassword, role_id, ...userData } = data; 
         console.log("Data being sent before sending:", data);
@@ -95,18 +99,19 @@ export default function SignUpForm() {
             dispatch(setRoles([role_id])); 
             console.log('User saved in Redux:', userData);
             console.log('Roles saved in Redux:', [role_id]);
+            history.goBack() ;
         } else {
             console.error("Unexpected status code:", response.status);
         }
     } catch (error) {
         console.error('Signup error:', error.message || error);
+        setErrorMessage(error.response ? error.response.data.message : "An error occurred. Please try again."); 
+    } finally {
+      alert("You need to click the link in your email to activate your account!");
+        setLoading(false);
     }
 };
-
-
-
-  
-  
+ 
   return (
     <div className="flex min-h-screen w-full items-center justify-center px-4 py-12">
       <div className="mx-auto w-full max-w-lg">
@@ -206,7 +211,7 @@ export default function SignUpForm() {
               </div>
 
               <div className="space-y-2">
-                <label htmlFor="storeBankAccount" className="block">Store Bank Account (IBAN)</label>
+                <label htmlFor="storeBankAccount" className="block">Store Bank Account</label>
                 <input
                   id="storeBankAccount"
                   {...register('store.bank_account')}
@@ -217,12 +222,10 @@ export default function SignUpForm() {
             </>
           )}
 
-          <button 
-            type="submit" 
-            className="w-full py-2 px-4 bg-blue-500 text-white rounded hover:bg-blue-600" 
-          >
-            Sign Up
+          <button type="submit" className="w-full bg-blue-500 text-white px-4 py-2 rounded" disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Sign Up'}
           </button>
+          {errorMessage && <p className="text-sm text-red-500">{errorMessage}</p>}
         </form>
       </div>
     </div>
