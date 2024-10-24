@@ -14,14 +14,11 @@ import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { verifyToken } from './auth'
 
-
-
-
 function App() {
    const dispatch = useDispatch();
 
    useEffect(() => {
-     verifyToken(dispatch);  // verifyToken fonksiyonunu burada çağırıyoruz
+     verifyToken(dispatch);
    }, [dispatch]);
 
   return (
