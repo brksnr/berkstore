@@ -11,6 +11,7 @@ import {
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import md5 from 'md5';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export function NavLinks () {  
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -22,6 +23,10 @@ export function NavLinks () {
     const gravatarUrl = emailHash
     ? `https://www.gravatar.com/avatar/${emailHash}?s=200&d=identicon`
     : null; 
+    const history = useHistory();
+    const pushLogin = () => {
+        history.push("/login")
+    }
     
 
     return (
@@ -114,7 +119,7 @@ export function NavLinks () {
             <div className="hidden lg:flex">
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
-                            {user.name ? (
+                            {user && user.name ? (
                                             <div className="flex items-center gap-2">
                                             {gravatarUrl && <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-10 h-10" />}
                                             <p>{user.name}</p>
@@ -137,7 +142,7 @@ export function NavLinks () {
                         </div>
             </div>
             <div className="flex gap-3 lg:hidden">
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user" onClick={pushLogin}></i>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <i className="fa-solid fa-cart-shopping"></i>
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>

@@ -7,21 +7,27 @@ import { ContactPage } from './pages/contactpage'
 import { TeamPage } from './pages/teampage'
 import { AboutUsPage } from './pages/aboutus'
 import SignUpForm from './components/signUpForm'
-import { Provider } from 'react-redux'
-import store from './store'
+import { Provider, useDispatch } from 'react-redux'
 import LoginForm from './components/loginform'
 import { SomeComponent } from './pages/deneme'
 import { ToastContainer } from 'react-toastify'
+import { useEffect } from 'react'
+import { verifyToken } from './auth'
 
 
 
 
 function App() {
+   const dispatch = useDispatch();
+
+   useEffect(() => {
+     verifyToken(dispatch);  // verifyToken fonksiyonunu burada çağırıyoruz
+   }, [dispatch]);
 
   return (
     <>
-    <ToastContainer/>
-     <Provider store={store}>
+     
+     <ToastContainer/>
     <Router>
       <Switch>
       <Route exact path="/">
@@ -53,7 +59,7 @@ function App() {
         </Route>
     </Switch>
     </Router>
-    </Provider>
+   
     </>
   )
 }

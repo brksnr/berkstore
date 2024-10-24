@@ -21,7 +21,6 @@ const clientReducer = (state = initialState, action) => {
     case SET_USER:
       return { ...state, user: action.payload };
     case SET_ROLES:
-      // Eğer roller diziye ekleniyorsa, kontrol edin
       return { 
         ...state, 
         roles: state.roles.includes(action.payload) ? state.roles : [...state.roles, action.payload] 

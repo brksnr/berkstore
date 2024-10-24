@@ -8,7 +8,7 @@ export const SET_CREDIT_CARDS = "SET_CREDIT_CARDS";
 // Action Creators
 export const setUser = (user) => ({
   type: SET_USER,
-  payload: user
+  payload: user,
 });
 
 export const setRoles = (roles) => ({

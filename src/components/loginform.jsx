@@ -1,29 +1,29 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useDispatch } from 'react-redux'
-import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer, toast } from 'react-toastify';
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
-import { useHistory } from 'react-router-dom'
-import axios from 'axios'
-import { setUser } from '../actions/clientActions';
-
-
-
+import { setUser } from '../actions/clientActions'
 
 export default function LoginForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      remember: true
+    }
+  });
   const [isLoading, setIsLoading] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
-
   const onSubmit = async (data) => {
+    console.log(data)
     try {
       setIsLoading(true);
       const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/login', {
@@ -33,16 +33,17 @@ export default function LoginForm() {
       if (response.status === 200) {
         const userData = response.data;
         const token = userData.token;
-        console.log("giriş başarılı",userData);
+        console.log("giriş başarılı", userData);
+        
         if (data.remember) {
-          localStorage.setItem('token', token); // Token'ı localStorage'a kaydet
+          localStorage.setItem('token', token);
         } else {
-          sessionStorage.setItem('token', token); // Token'ı sessionStorage'a kaydet
+          sessionStorage.setItem('token', token); 
         }
         dispatch(setUser(userData));
         toast.success('Login successful!');
         setTimeout(() => {
-          history.goBack(); // Veya istediğiniz bir sayfaya yönlendirin
+          history.goBack();
         }, 2000);
       }
     } catch (error) {
@@ -55,7 +56,7 @@ export default function LoginForm() {
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
-       <ToastContainer />
+      <ToastContainer />
       <Card className="mx-auto max-w-sm">
         <CardHeader>
           <CardTitle className="text-2xl">Login</CardTitle>
