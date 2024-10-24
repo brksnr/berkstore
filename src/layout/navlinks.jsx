@@ -74,8 +74,20 @@ export function NavLinks () {
         <NavigationMenuLink>
         <div className="flex gap-28 w-96 pl-10">
             <div className="flex flex-col gap-7 py-4">
-                <p className="font-bold">Kategoriler</p>
-                {categories.map((category) => (
+                <p className="font-bold">Man</p>
+                {categories
+                .filter((category) => category.gender === 'e') 
+                .map((category) => (
+                <Link to={`/shop/${category.gender}/${category.title}`} key={category.id}>
+                <p>{category.title}</p>
+                </Link>
+                ))}
+            </div>
+            <div className="flex flex-col gap-7 py-4">
+                <p className="font-bold">Woman</p>
+                {categories
+                .filter((category) => category.gender === 'k')
+                .map((category) => (
                 <Link to={`/shop/${category.gender}/${category.title}`} key={category.id}>
                 <p>{category.title}</p>
                 </Link>

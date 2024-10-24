@@ -5,6 +5,7 @@ import { Button } from '../components/ui/button';
 import { Paginations } from "../components/pagination";
 import { CustomSelect } from "../components/customSelects";
 import { CategoryList } from "@/components/categorylist";
+import { ProductList } from "@/components/productlist";
 
 export function ShopPage() {
     const products = [
@@ -105,29 +106,7 @@ export function ShopPage() {
         </div>
 
         <div className="bg-white-500 flex flex-col items-center">
-        <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
-            {products.map((product) => (
-                <div key={product.id} className="flex flex-col items-center w-80">
-                    <div >
-                    <img  src={product.image} alt={product.title}/>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 pt-3 pb-16">
-                        <p className="h5">{product.title}</p>
-                        <p className="grayP">{product.department}</p>
-                        <p>
-                            <span className="grayP">{product.oldPrice}</span> 
-                            <span className="greenP"> {product.newPrice}</span>
-                        </p>
-                        <div className="flex gap-1">
-                            <button className="w-4 h-4 rounded-full bg-blue-500"></button>
-                            <button className="w-4 h-4 rounded-full bg-green-800"></button>
-                            <button className="w-4 h-4 rounded-full bg-orange-800"></button>
-                            <button className="w-4 h-4 rounded-full bg-black"></button>
-                        </div>
-                    </div>
-                </div>
-            ))}
-        </div>
+        <ProductList/>
         <div className="mb-10 flex font-inter">
                     <Paginations/>
         </div>
