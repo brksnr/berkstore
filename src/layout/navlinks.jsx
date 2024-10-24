@@ -19,6 +19,7 @@ export function NavLinks () {
         setIsMenuOpen(!isMenuOpen);
     };
     const user = useSelector((state) => state.client.user);
+    const categories = useSelector((state) => state.product.categories);
     const emailHash = user && user.email ? md5(user.email.trim().toLowerCase()) : null;
     const gravatarUrl = emailHash
     ? `https://www.gravatar.com/avatar/${emailHash}?s=200&d=identicon`
@@ -34,8 +35,8 @@ export function NavLinks () {
         
           <div className="hidden lg:flex justify-between p-4 bg-blue-500"> 
             <div className="flex justify-between gap-4 font-inter">
-                <div><i class="fa-solid fa-phone"></i> (225) 555-0118</div>
-                <div><i class="fa-regular fa-envelope-open"></i> michelle.rivera@example.com</div>
+                <div><i className="fa-solid fa-phone"></i> (225) 555-0118</div>
+                <div><i className="fa-regular fa-envelope-open"></i> michelle.rivera@example.com</div>
             </div>
             <div>
                 <p>Follow Us  and get a chance to win 80% off</p>
@@ -45,10 +46,10 @@ export function NavLinks () {
                     <p>Follow Us :</p>
                 </div>
                 <div className="flex gap-2 items-center">
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-youtube"></i>
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-twitter"></i>
+                    <i className="fa-brands fa-instagram"></i>
+                    <i className="fa-brands fa-youtube"></i>
+                    <i className="fa-brands fa-facebook"></i>
+                    <i className="fa-brands fa-twitter"></i>
                 </div>
             </div>
         </div>
@@ -71,24 +72,16 @@ export function NavLinks () {
         </NavigationMenuTrigger>
       <NavigationMenuContent>
         <NavigationMenuLink>
-            <div className="flex gap-28 w-96 pl-10">
-                   <div className="flex flex-col gap-7 py-4">
-                        <p className="font-bold">Erkek</p>
-                    <div className="flex flex-col gap-2 grayP">
-                        <p>Bags</p>
-                        <p>Belts</p>
-                        <p>Cosmetics</p>
-                    </div>
-                   </div>
-                   <div className="flex flex-col gap-7 py-4">
-                        <p className="font-bold">Kadın</p>
-                    <div className="flex flex-col gap-2 grayP">
-                        <p>Bags</p>
-                        <p>Belts</p>
-                        <p>Cosmetics</p>
-                    </div>
-                   </div>
+        <div className="flex gap-28 w-96 pl-10">
+            <div className="flex flex-col gap-7 py-4">
+                <p className="font-bold">Kategoriler</p>
+                {categories.map((category) => (
+                <Link to={`/shop/${category.gender}/${category.title}`} key={category.id}>
+                <p>{category.title}</p>
+                </Link>
+                ))}
             </div>
+        </div>
         </NavigationMenuLink>
       </NavigationMenuContent>
     </NavigationMenuItem>
@@ -135,14 +128,14 @@ export function NavLinks () {
                                 
                             </div>
                             <div className="flex gap-9">
-                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <i className="fa-solid fa-magnifying-glass"></i>
                             <i className="fa-solid fa-bars"></i>
-                            <i class="fa-regular fa-heart"></i>
+                            <i className="fa-regular fa-heart"></i>
                             </div>
                         </div>
             </div>
             <div className="flex gap-3 lg:hidden">
-                <i class="fa-regular fa-user" onClick={pushLogin}></i>
+                <i className="fa-regular fa-user" onClick={pushLogin}></i>
                 <i className="fa-solid fa-magnifying-glass"></i>
                 <i className="fa-solid fa-cart-shopping"></i>
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>

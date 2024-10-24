@@ -1,22 +1,38 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-const categories = [
-    { id: 1, title: "CLOTHS", count: "5 Items", imageUrl: "/images/shop/shop1.png", gender: "kadin" },
-    { id: 2, title: "SHOES", count: "7 Items", imageUrl: "/images/shop/shop2.png", gender: "erkek" },
-    { id: 3, title: "ACCESSORIES", count: "3 Items", imageUrl: "/images/shop/shop3.png", gender: "kadin" },
-    { id: 4, title: "ACCESSORIES", count: "4 Items", imageUrl: "/images/shop/shop4.png", gender: "erkek" },
-    { id: 5, title: "ACCESSORIES", count: "10 Items", imageUrl: "/images/shop/shop5.png", gender: "kadin" },
-];
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategories } from '../actions/productActions';
+import axios from 'axios';
 
 export const CategoryList = () => {
+    const dispatch = useDispatch();
+    const categories = useSelector(state => state.product.categories);
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const response = await axios.get('https://workintech-fe-ecommerce.onrender.com/categories');
+                dispatch(setCategories(response.data));
+                console.log(response.data);
+            } catch (error) {
+                console.error('Error fetching categories:', error);
+            }
+        };
+
+        fetchCategories();
+    }, [dispatch]);
+
+    const topCategories = [...categories]
+        .sort((a, b) => b.rating - a.rating)
+        .slice(0, 5);
+
     return (
         <div className="flex flex-col gap-4 lg:flex-row justify-between px-24">
-            {categories.map((item) => (
-                <Link to={`/shop/${item.gender}/${item.title.toLowerCase()}`} key={item.id}>
+            {topCategories.map((item) => (
+                <Link to={`/shop/${item.gender}/${item.title}`} key={item.id}>
                     <div
                         className="bg-cover bg-center w-80 h-80 flex items-center justify-center lg:w-72 lg:h-72"
-                        style={{ backgroundImage: `url(${item.imageUrl})` }}
+                        style={{ backgroundImage: `url(${item.img})` }}
                     >
                         <div className="flex flex-col items-center gap-4 h4 text-white">
                             <p>{item.title}</p>
