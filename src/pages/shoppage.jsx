@@ -21,24 +21,7 @@ export function ShopPage() {
             </div>
         </div>
         <CategoryList/>
-     </div>
-     <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:justify-between lg:px-32">
-            <div>
-                <p className="font-inter font-bold text-gray-500">Showing all results</p>
-            </div>
-            <div className="flex gap-3 items-center font-inter">
-                <p className="text-gray-500">Views:</p>
-                <div className="flex gap-3">
-                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-border-all"></i></button> 
-                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-list"></i></button> 
-                </div>
-            </div>
-            <div className="flex gap-4 items-center">
-            <CustomSelect/>
-            <Button variant="default" size="sm">Filter</Button>
-            </div>
-        </div>
-
+    </div>
         <div className="bg-white-500 flex flex-col items-center">
         <ProductList/>
         <div className="mb-10 flex font-inter">

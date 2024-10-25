@@ -1,10 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProductList, setTotal } from '../actions/productActions';
 import axios from 'axios';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { CustomSelect } from './customSelects';
 
 export const ProductList = () => {
+    const [sort, setSort] =useState("");
     const dispatch = useDispatch();
     const products = useSelector(state => state.product.productList);
     const total = useSelector(state => state.product.total);
@@ -12,11 +14,17 @@ export const ProductList = () => {
 
     useEffect(() => {
         const fetchProducts = async () => {
+            console.log("sort ? :", sort)
             try {
-                const endpoint = categoryId 
-                    ? `https://workintech-fe-ecommerce.onrender.com/products?category=${categoryId}`
-                    : 'https://workintech-fe-ecommerce.onrender.com/products';
+                let endpoint = `https://workintech-fe-ecommerce.onrender.com/products?`;
+                if (categoryId) {
+                    endpoint += `category=${categoryId}&`;
+                }
+                if (sort) {
+                    endpoint += `sort=${sort}`;
+                }
                 const response = await axios.get(endpoint);
+ 
                 dispatch(setProductList(response.data.products));
                 dispatch(setTotal(response.data.total));
             } catch (error) {
@@ -25,9 +33,25 @@ export const ProductList = () => {
         };
         
         fetchProducts();
-    }, [dispatch, categoryId]);
+    }, [dispatch, categoryId, sort]);
 
     return (
+        <>
+        <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:justify-between lg:w-full lg:px-28 ">
+            <div>
+                <p className="font-inter font-bold text-gray-500">Showing all results</p>
+            </div>
+            <div className="flex gap-3 items-center font-inter">
+                <p className="text-gray-500">Views:</p>
+                <div className="flex gap-3">
+                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-border-all"></i></button> 
+                <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-list"></i></button> 
+                </div>
+            </div>
+            <div className="flex gap-4 items-center">
+            <CustomSelect setSort={setSort} />
+            </div>
+        </div>
         <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
             {products.map((product) => (
                 <div key={product.id} className="flex flex-col items-center w-80">
@@ -54,5 +78,6 @@ export const ProductList = () => {
                 </div>
             ))}
         </div>
+        </>
     );
 };
