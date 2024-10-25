@@ -19,12 +19,11 @@ export function CustomSelect() {
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          <SelectLabel>Fruits</SelectLabel>
-          <SelectItem value="apple">Apple</SelectItem>
-          <SelectItem value="banana">Banana</SelectItem>
-          <SelectItem value="blueberry">Blueberry</SelectItem>
-          <SelectItem value="grapes">Grapes</SelectItem>
-          <SelectItem value="pineapple">Pineapple</SelectItem>
+          <SelectLabel>Sort:</SelectLabel>
+          <SelectItem value="apple">price:asc</SelectItem>
+          <SelectItem value="banana">price:desc</SelectItem>
+          <SelectItem value="blueberry">rating:asc</SelectItem>
+          <SelectItem value="grapes">rating:desc</SelectItem>
         </SelectGroup>
       </SelectContent>
     </Select>

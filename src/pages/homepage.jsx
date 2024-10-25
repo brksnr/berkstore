@@ -10,6 +10,7 @@ import {
     CarouselCaption,
   } from 'reactstrap';
 import { Footer } from "../layout/footer";
+import { ProductList } from "@/components/productlist";
 
 export function HomePage() {
 
@@ -49,72 +50,6 @@ export function HomePage() {
           },
       ];
       
-    const products = [
-        { 
-            id: 1, 
-            image: "/images/bestseller/bs1.png", 
-            title: "Graphic Design", 
-            department: "English Department",
-            oldPrice: "$16.48", 
-            newPrice: "$6.48" 
-        },
-        { 
-            id: 2, 
-            image: "/images/bestseller/bs2.png", 
-            title: "Web Development", 
-            department: "Computer Science", 
-            oldPrice: "$25.00", 
-            newPrice: "$15.00" 
-        },
-        { 
-            id: 3, 
-            image: "/images/bestseller/bs3.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 4, 
-            image: "/images/bestseller/bs4.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 5, 
-            image: "/images/bestseller/bs5.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 6, 
-            image: "/images/bestseller/bs6.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 7, 
-            image: "/images/bestseller/bs7.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 8, 
-            image: "/images/bestseller/bs5.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-    ];
 
     // karosel
 
@@ -216,27 +151,7 @@ export function HomePage() {
             <p className="grayP">Problems trying to resolve the<br className="lg:hidden"/>conflict between</p>
             </div>
         <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
-            {products.map((product) => (
-                <div key={product.id} className="flex flex-col items-center w-80">
-                    <div >
-                    <img  src={product.image} alt={product.title}/>
-                    </div>
-                    <div className="flex flex-col items-center gap-2 pt-3 pb-16">
-                        <p className="h5">{product.title}</p>
-                        <p className="grayP">{product.department}</p>
-                        <p>
-                            <span className="grayP">{product.oldPrice}</span> 
-                            <span className="greenP"> {product.newPrice}</span>
-                        </p>
-                        <div className="flex gap-1">
-                            <button className="w-4 h-4 rounded-full bg-blue-500"></button>
-                            <button className="w-4 h-4 rounded-full bg-green-800"></button>
-                            <button className="w-4 h-4 rounded-full bg-orange-800"></button>
-                            <button className="w-4 h-4 rounded-full bg-black"></button>
-                        </div>
-                    </div>
-                </div>
-            ))}
+            <ProductList/>
         </div>      
         </div>
         </div>

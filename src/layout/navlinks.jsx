@@ -8,23 +8,36 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
   } from "@/components/ui/navigation-menu"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import md5 from 'md5';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { Button } from '../components/ui/button';
 
 export function NavLinks () {  
+    const history = useHistory();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [isLogIn, setIsLogIn] = useState(true);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsLogIn(false); 
+        console.log('Logged out, token silindi.');
+        window.location.reload();
+    };
+        
+
+
+
     const user = useSelector((state) => state.client.user);
     const categories = useSelector((state) => state.product.categories);
     const emailHash = user && user.email ? md5(user.email.trim().toLowerCase()) : null;
     const gravatarUrl = emailHash
     ? `https://www.gravatar.com/avatar/${emailHash}?s=200&d=identicon`
     : null; 
-    const history = useHistory();
+    
     const pushLogin = () => {
         history.push("/login")
     }
@@ -78,7 +91,7 @@ export function NavLinks () {
                 {categories
                 .filter((category) => category.gender === 'e') 
                 .map((category) => (
-                <Link to={`/shop/${category.gender}/${category.title}`} key={category.id}>
+                <Link to={`/shop/${category.gender}/${category.title}/${category.id}`} key={category.id}>
                 <p>{category.title}</p>
                 </Link>
                 ))}
@@ -88,7 +101,7 @@ export function NavLinks () {
                 {categories
                 .filter((category) => category.gender === 'k')
                 .map((category) => (
-                <Link to={`/shop/${category.gender}/${category.title}`} key={category.id}>
+                <Link to={`/shop/${category.gender}/${category.title}/${category.id}`} key={category.id}>
                 <p>{category.title}</p>
                 </Link>
                 ))}
@@ -125,9 +138,10 @@ export function NavLinks () {
                         <div className="flex gap-9 items-center">
                             <div className="flex gap-1 font-inter">
                             {user && user.name ? (
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex items-center gap-3">
                                             {gravatarUrl && <img src={gravatarUrl} alt="User Avatar" className="rounded-full w-10 h-10" />}
                                             <p>{user.name}</p>
+                                            <Button onClick={handleLogout} variant="destructive" size="sm">Log Out</Button>
                                             </div>
                                           ) : (
                                             <div className="flex items-center gap-1">

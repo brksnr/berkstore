@@ -8,72 +8,6 @@ import { CategoryList } from "@/components/categorylist";
 import { ProductList } from "@/components/productlist";
 
 export function ShopPage() {
-    const products = [
-        { 
-            id: 1, 
-            image: "/images/bestseller/bs1.png", 
-            title: "Graphic Design", 
-            department: "English Department",
-            oldPrice: "$16.48", 
-            newPrice: "$6.48" 
-        },
-        { 
-            id: 2, 
-            image: "/images/bestseller/bs2.png", 
-            title: "Web Development", 
-            department: "Computer Science", 
-            oldPrice: "$25.00", 
-            newPrice: "$15.00" 
-        },
-        { 
-            id: 3, 
-            image: "/images/bestseller/bs3.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 4, 
-            image: "/images/bestseller/bs4.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 5, 
-            image: "/images/bestseller/bs5.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 6, 
-            image: "/images/bestseller/bs6.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 7, 
-            image: "/images/bestseller/bs7.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-        { 
-            id: 8, 
-            image: "/images/bestseller/bs5.png", 
-            title: "Data Science", 
-            department: "Mathematics", 
-            oldPrice: "$30.00", 
-            newPrice: "$20.00", 
-        },
-    ];
     return(
         <>
     <NavLinks/>
@@ -90,7 +24,7 @@ export function ShopPage() {
      </div>
      <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:justify-between lg:px-32">
             <div>
-                <p className="font-inter font-bold text-gray-500">Showing all 12 results</p>
+                <p className="font-inter font-bold text-gray-500">Showing all results</p>
             </div>
             <div className="flex gap-3 items-center font-inter">
                 <p className="text-gray-500">Views:</p>
@@ -108,7 +42,7 @@ export function ShopPage() {
         <div className="bg-white-500 flex flex-col items-center">
         <ProductList/>
         <div className="mb-10 flex font-inter">
-                    <Paginations/>
+        <Paginations/>
         </div>
         </div> 
         <Clients/>

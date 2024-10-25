@@ -7,7 +7,7 @@ import { ContactPage } from './pages/contactpage'
 import { TeamPage } from './pages/teampage'
 import { AboutUsPage } from './pages/aboutus'
 import SignUpForm from './components/signUpForm'
-import { Provider, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import LoginForm from './components/loginform'
 import { SomeComponent } from './pages/deneme'
 import { ToastContainer } from 'react-toastify'
@@ -30,9 +30,8 @@ function App() {
       <Route exact path="/">
       <HomePage />
       </Route>
-        <Route path="/shop">
-           <ShopPage/>
-        </Route>
+        <Route exact path="/shop" component={ShopPage} />  
+        <Route path="/shop/:gender/:title/:categoryId" component={ShopPage}/>
         <Route path="/product">
            <ProductPage/>
         </Route>
