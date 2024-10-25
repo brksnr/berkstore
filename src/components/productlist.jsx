@@ -7,14 +7,15 @@ import { CustomSelect } from './customSelects';
 
 export const ProductList = () => {
     const [sort, setSort] =useState("");
+    const [color, setColor] = useState("");
     const dispatch = useDispatch();
     const products = useSelector(state => state.product.productList);
     const total = useSelector(state => state.product.total);
     const { categoryId } = useParams();
 
+
     useEffect(() => {
         const fetchProducts = async () => {
-            console.log("sort ? :", sort)
             try {
                 let endpoint = `https://workintech-fe-ecommerce.onrender.com/products?`;
                 if (categoryId) {
@@ -22,6 +23,9 @@ export const ProductList = () => {
                 }
                 if (sort) {
                     endpoint += `sort=${sort}`;
+                }
+                if (color) {
+                    endpoint += `filter=${color}`;
                 }
                 const response = await axios.get(endpoint);
  
@@ -33,7 +37,7 @@ export const ProductList = () => {
         };
         
         fetchProducts();
-    }, [dispatch, categoryId, sort]);
+    }, [dispatch, categoryId, sort, color]);
 
     return (
         <>
@@ -49,7 +53,7 @@ export const ProductList = () => {
                 </div>
             </div>
             <div className="flex gap-4 items-center">
-            <CustomSelect setSort={setSort} />
+            <CustomSelect setSort={setSort} setColor={setColor} />
             </div>
         </div>
         <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">

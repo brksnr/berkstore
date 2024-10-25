@@ -1,9 +1,7 @@
 import { Footer } from "../layout/footer";
 import { NavLinks } from "../layout/navlinks";
 import { Clients } from "../layout/clients";
-import { Button } from '../components/ui/button';
 import { Paginations } from "../components/pagination";
-import { CustomSelect } from "../components/customSelects";
 import { CategoryList } from "@/components/categorylist";
 import { ProductList } from "@/components/productlist";
 
