@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategories } from '../actions/productActions';
 import axios from 'axios';
-import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const CategoryList = () => {
     const dispatch = useDispatch();
