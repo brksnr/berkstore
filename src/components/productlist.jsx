@@ -4,6 +4,7 @@ import { setProductList, setTotal, setOffset } from '../actions/productActions';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { CustomSelect } from './customSelects';
+import { Link } from 'react-router-dom';
 
 export const ProductList = () => {
     const [sort, setSort] = useState("");
@@ -12,7 +13,9 @@ export const ProductList = () => {
     const products = useSelector(state => state.product.productList);
     const total = useSelector(state => state.product.total);
     const offset = useSelector(state => state.product.offset);
-    const { categoryId } = useParams();
+    const { categoryId, gender, title } = useParams();
+
+    const linkTo = `/shop/${gender}/${title}/${categoryId}/${sort}/${color}&limit=25&offset=${offset}`
 
     const fetchProducts = async () => {
         try {
@@ -31,7 +34,8 @@ export const ProductList = () => {
             if (offset) {
                 endpoint += `&limit=25&offset=${offset}`;
             }
-            console.log(window.location.href);
+            console.log("offset?:", linkTo)
+            
             const response = await axios.get(endpoint);
             dispatch(setProductList(response.data.products));
             dispatch(setTotal(response.data.total));
@@ -39,7 +43,6 @@ export const ProductList = () => {
             console.error('Error fetching products:', error);
         }
     };
-
     useEffect(() => {
         fetchProducts();
     }, [dispatch, categoryId, sort, color, offset]);
@@ -57,18 +60,21 @@ export const ProductList = () => {
                         <button className="border border-gray-400 rounded w-10 h-10"><i className="fa-solid fa-list"></i></button> 
                     </div>
                 </div>
-                <div className="flex gap-4 items-center">
+                <div>
+                <Link to={linkTo} className="flex gap-4 items-center">
                     <CustomSelect setSort={setSort} setColor={setColor} />
+                </Link>
                 </div>
             </div>
             <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
                 {products.map((product) => (
+                     <Link to={`/shop/${gender}/${product.id}`}>
                     <div key={product.id} className="flex flex-col items-center w-80">
                         <div>
                             {product.images && product.images.length > 0 ? (
                                 <img src={product.images[0].url} alt={product.name} />
                             ) : (
-                                <p>yükleniyor...</p>
+                                <p>Yükleniyor...</p>
                             )}
                         </div>
                         <div className="flex flex-col items-center gap-2 pt-3 pb-16">
@@ -85,6 +91,7 @@ export const ProductList = () => {
                             </div>
                         </div>
                     </div>
+                    </Link>
                 ))}
             </div>
         </>

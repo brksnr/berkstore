@@ -1,5 +1,6 @@
 export const SET_CATEGORIES = "SET_CATEGORIES";
 export const SET_PRODUCT_LIST = "SET_PRODUCT_LIST";
+export const SET_PRODUCT = "SET_PRODUCT";
 export const SET_TOTAL = "SET_TOTAL";
 export const SET_FETCH_STATE = "SET_FETCH_STATE";
 export const SET_LIMIT = "SET_LIMIT";
@@ -15,6 +16,10 @@ export const setCategories = (categories) => ({
 export const setProductList = (productList) => ({
   type: SET_PRODUCT_LIST,
   payload: productList,
+});
+export const setProduct = (product) => ({
+  type: SET_PRODUCT,
+  payload: product,
 });
 
 export const setTotal = (total) => ({

@@ -13,6 +13,7 @@ import { SomeComponent } from './pages/deneme'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { verifyToken } from './auth'
+import ProductDetail from './components/productDetail'
 
 function App() {
    const dispatch = useDispatch();
@@ -31,7 +32,8 @@ function App() {
       <HomePage />
       </Route>
         <Route exact path="/shop" component={ShopPage} />  
-        <Route path="/shop/:gender/:title/:categoryId" component={ShopPage}/>
+        <Route  path="/shop/:gender/:title/:categoryId" component={ShopPage}/>
+        <Route path="/shop/:gender/:productId" component={ProductDetail} />
         <Route path="/product">
            <ProductPage/>
         </Route>
