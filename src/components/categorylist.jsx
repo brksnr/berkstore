@@ -3,22 +3,23 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategories } from '../actions/productActions';
 import axios from 'axios';
+import { fetchCategories } from '../api';
 
 export const CategoryList = () => {
     const dispatch = useDispatch();
     const categories = useSelector(state => state.product.categories);
 
     useEffect(() => {
-        const fetchCategories = async () => {
+        const getCategories = async () => {
             try {
-                const response = await axios.get('https://workintech-fe-ecommerce.onrender.com/categories');
-                dispatch(setCategories(response.data));
+                const categories = await fetchCategories();
+                dispatch(setCategories(categories));
             } catch (error) {
                 console.error('Error fetching categories:', error);
             }
         };
 
-        fetchCategories();
+        getCategories();
     }, [dispatch]);
 
     const topCategories = [...categories]

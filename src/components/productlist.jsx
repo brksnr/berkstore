@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setProductList, setTotal, setOffset } from '../actions/productActions';
+import { setProductList, setTotal } from '../actions/productActions';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { CustomSelect } from './customSelects';
 import { Link } from 'react-router-dom';
+import { fetchProducts } from '../api';
 
 export const ProductList = () => {
     const [sort, setSort] = useState("");
@@ -17,34 +18,18 @@ export const ProductList = () => {
 
     const linkTo = `/shop/${gender}/${title}/${categoryId}/${sort}/${color}&limit=25&offset=${offset}`
 
-    const fetchProducts = async () => {
+    const fetchProductListData = async () => {
         try {
-            let endpoint = `https://workintech-fe-ecommerce.onrender.com/products?`;
-            if (categoryId) {
-                endpoint += `&category=${categoryId}`;
-            }
-            
-            if (sort) {
-                endpoint += `&sort=${sort}`;
-            }
-            
-            if (color) {
-                endpoint += `&filter=${color}`;
-            }
-            if (offset) {
-                endpoint += `&limit=25&offset=${offset}`;
-            }
-            console.log("offset?:", linkTo)
-            
-            const response = await axios.get(endpoint);
-            dispatch(setProductList(response.data.products));
-            dispatch(setTotal(response.data.total));
+            const data = await fetchProducts({ categoryId, sort, color, offset });
+            dispatch(setProductList(data.products));
+            dispatch(setTotal(data.total));
         } catch (error) {
             console.error('Error fetching products:', error);
         }
     };
+
     useEffect(() => {
-        fetchProducts();
+        fetchProductListData();
     }, [dispatch, categoryId, sort, color, offset]);
 
     return (

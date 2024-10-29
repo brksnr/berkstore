@@ -8,7 +8,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -16,25 +15,31 @@ import { NavLinks } from "@/layout/navlinks";
 import { Clients } from "@/layout/clients";
 import { Footer } from "@/layout/footer";
 
+import { setProduct } from "../actions/productActions";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProductDetail } from "@/api";
+
 
 export default function ProductDetail() {
+  const dispatch = useDispatch();
   const [activeColor, setActiveColor] = useState("blue");
-
   const { productId } = useParams();
-    const [product, setProduct] = useState(null);
+  const product = useSelector(state => state.product.product);
+  console.log("product id :", productId)
 
-    const fetchProductDetail = async () => {
-        try {
-            const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/products/${productId}`);
-            setProduct(response.data);
-        } catch (error) {
-            console.error('Error fetching product details:', error);
-        }
-    };
+    const fetchProductData = async () => {
+      try {
+        const productData = await fetchProductDetail(productId);
+          dispatch(setProduct(productData));
+          console.log("bakalım:", productData)
+      } catch (error) {
+          console.error('Error fetching product details:', error);
+      }
+  };
 
-    useEffect(() => {
-        fetchProductDetail();
-    }, [productId]);
+  useEffect(() => {
+      fetchProductData();
+  }, [dispatch, productId]);
 
     if (!product) return <p>Yükleniyor...</p>;
 
@@ -45,18 +50,15 @@ export default function ProductDetail() {
       <div className="w-full md:w-1/2">
         <Carousel className="w-full max-w-xl">
           <CarouselContent>
-            <CarouselItem>
-              <img
-                src={product.images[0].url} alt={product.name}
-                className="w-full h-auto rounded-lg"
-              />
-            </CarouselItem>
-            <CarouselItem>
-              <img
-                    src={product.images[0].url} alt={product.name}
-                className="w-full h-auto rounded-lg"
-              />
-            </CarouselItem>
+          <CarouselItem>
+            {product.images && product.images.length > 0 ? (
+            <img
+            src={product.images[0].url}
+            alt={product.name}
+            className="w-full h-auto rounded-lg"/>
+            ) : (
+            <p>Image not available</p>)}
+          </CarouselItem>
           </CarouselContent>
           <CarouselPrevious className="left-2" />
           <CarouselNext className="right-2" />
