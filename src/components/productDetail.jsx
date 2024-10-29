@@ -12,6 +12,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useState } from "react";
 import { useEffect } from "react";
+import { NavLinks } from "@/layout/navlinks";
+import { Clients } from "@/layout/clients";
+import { Footer } from "@/layout/footer";
 
 
 export default function ProductDetail() {
@@ -36,6 +39,8 @@ export default function ProductDetail() {
     if (!product) return <p>Yükleniyor...</p>;
 
   return (
+    <>
+    <NavLinks/>
     <div className="flex flex-col md:flex-row gap-8 p-4 max-w-6xl mx-auto">
       <div className="w-full md:w-1/2">
         <Carousel className="w-full max-w-xl">
@@ -114,5 +119,8 @@ export default function ProductDetail() {
         </div>
       </div>
     </div>
+    <Clients/>
+    <Footer/>
+    </>
   )
 }

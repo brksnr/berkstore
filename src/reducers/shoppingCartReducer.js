@@ -1,4 +1,4 @@
-import { SET_CART, SET_PAYMENT, SET_ADDRESS } from '../actions/shoppingCartActions';
+import { SET_CART, SET_PAYMENT, SET_ADDRESS, ADD_TO_CART, INCREASE_COUNT } from '../actions/shoppingCartActions';
 
 const initialState = {
   cart: [{}],
@@ -14,8 +14,41 @@ const shoppingCartReducer = (state = initialState, action) => {
       return { ...state, payment: action.payload };
     case SET_ADDRESS:
       return { ...state, address: action.payload };
+    case ADD_TO_CART: {
+        const existingProductIndex = state.cart.findIndex(
+            (item) => item.product.id === action.payload.id
+        );
+        if (existingProductIndex !== -1) {
+            return {
+                ...state,
+                cart: state.cart.map((item, index) =>
+                    index === existingProductIndex
+                        ? { ...item, count: item.count + 1 }
+                        : item
+                ),
+            };
+        }
+        return {
+            ...state,
+            cart: [
+                ...state.cart,
+                { count: 1, checked: true, product: action.payload },
+            ],
+        };
+    }
+    case INCREASE_COUNT: {
+        return {
+            ...state,
+            cart: state.cart.map((item) =>
+                item.product.id === action.payload
+                    ? { ...item, count: item.count + 1 }
+                    : item
+            ),
+        };
+    }  
     default:
       return state;
+    
   }
 };
 

@@ -1,6 +1,8 @@
 export const SET_CART = "SET_CART";
 export const SET_PAYMENT = "SET_PAYMENT";
 export const SET_ADDRESS = "SET_ADDRESS";
+export const ADD_TO_CART = "ADD_TO_CART";
+export const INCREASE_COUNT = "INCREASE_COUNT";
 
 // Action Creators
 export const setCart = (cart) => ({
@@ -16,4 +18,14 @@ export const setPayment = (payment) => ({
 export const setAddress = (address) => ({
   type: SET_ADDRESS,
   payload: address
+});
+
+export const addToCart = (product) => ({
+  type: ADD_TO_CART,
+  payload: product,
+});
+
+export const increaseCount = (productId) => ({
+  type: INCREASE_COUNT,
+  payload: productId,
 });

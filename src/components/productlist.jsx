@@ -48,7 +48,7 @@ export const ProductList = () => {
     }, [dispatch, categoryId, sort, color, offset]);
 
     return (
-        <>
+        <>  
             <div className="flex flex-col items-center gap-10 py-10 lg:flex-row lg:justify-between lg:w-full lg:px-28 ">
                 <div>
                     <p className="font-inter font-bold text-gray-500">Showing all results</p>

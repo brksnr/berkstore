@@ -27,9 +27,6 @@ export function NavLinks () {
         console.log('Logged out, token silindi.');
         window.location.reload();
     };
-        
-
-
 
     const user = useSelector((state) => state.client.user);
     const categories = useSelector((state) => state.product.categories);
@@ -42,7 +39,6 @@ export function NavLinks () {
         history.push("/login")
     }
     
-
     return (
         <>
         
@@ -154,7 +150,7 @@ export function NavLinks () {
                                 
                             </div>
                             <div className="flex gap-9">
-                            <i className="fa-solid fa-magnifying-glass"></i>
+                            <i class="fa-solid fa-cart-shopping"></i>
                             <i className="fa-solid fa-bars"></i>
                             <i className="fa-regular fa-heart"></i>
                             </div>
