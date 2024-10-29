@@ -4,6 +4,7 @@ import { Clients } from "../layout/clients";
 import { Paginations } from "../components/pagination";
 import { CategoryList } from "@/components/categorylist";
 import { ProductList } from "@/components/productlist";
+import ShoppingCart from "@/components/shoppingcard";
 
 export function ShopPage() {
     return(

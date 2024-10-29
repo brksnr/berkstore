@@ -9,12 +9,16 @@ import {
     navigationMenuTriggerStyle,
   } from "@/components/ui/navigation-menu"
 import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import md5 from 'md5';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../components/ui/button';
+import ShoppingCart from '@/components/shoppingcard';
+import { toggleCart } from '@/actions/shoppingCartActions';
 
-export function NavLinks () {  
+export function NavLinks () {
+    const cartControl = useSelector(state => state.shoppingCart.cart);
+    const dispatch = useDispatch();
     const history = useHistory();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogIn, setIsLogIn] = useState(true);
@@ -28,6 +32,11 @@ export function NavLinks () {
         window.location.reload();
     };
 
+    const [isCartOpen, setIsCartOpen] = useState(false);
+    const toggleCart = () => {
+        setIsCartOpen(!isCartOpen); 
+    };
+
     const user = useSelector((state) => state.client.user);
     const categories = useSelector((state) => state.product.categories);
     const emailHash = user && user.email ? md5(user.email.trim().toLowerCase()) : null;
@@ -38,10 +47,9 @@ export function NavLinks () {
     const pushLogin = () => {
         history.push("/login")
     }
-    
+
     return (
         <>
-        
           <div className="hidden lg:flex justify-between p-4 bg-blue-500"> 
             <div className="flex justify-between gap-4 font-inter">
                 <div><i className="fa-solid fa-phone"></i> (225) 555-0118</div>
@@ -150,11 +158,17 @@ export function NavLinks () {
                                 
                             </div>
                             <div className="flex gap-9">
-                            <i class="fa-solid fa-cart-shopping"></i>
+                            <i className="fa-solid fa-cart-shopping flex gap-2 items-center" onClick={toggleCart}>
+                                <button className='rounded-full border-bg-primary w-5 h-5 bg-blue-500 h-3 text-white font-thin text-xs bg-primary'>{cartControl.length}</button></i>
                             <i className="fa-solid fa-bars"></i>
                             <i className="fa-regular fa-heart"></i>
                             </div>
                         </div>
+                        {isCartOpen && (
+                <div className="absolute right-4 mt-5">
+                    <ShoppingCart />
+                </div>
+            )}
             </div>
             <div className="flex gap-3 lg:hidden">
                 <i className="fa-regular fa-user" onClick={pushLogin}></i>

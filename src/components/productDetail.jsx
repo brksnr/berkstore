@@ -14,10 +14,11 @@ import { useEffect } from "react";
 import { NavLinks } from "@/layout/navlinks";
 import { Clients } from "@/layout/clients";
 import { Footer } from "@/layout/footer";
-
 import { setProduct } from "../actions/productActions";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductDetail } from "@/api";
+import { addToCart } from "@/actions/shoppingCartActions";
+import { toast } from "react-toastify";
 
 
 export default function ProductDetail() {
@@ -25,23 +26,30 @@ export default function ProductDetail() {
   const [activeColor, setActiveColor] = useState("blue");
   const { productId } = useParams();
   const product = useSelector(state => state.product.product);
-  console.log("product id :", productId)
+  const cartControl = useSelector(state => state.shoppingCart.cart);
 
     const fetchProductData = async () => {
       try {
         const productData = await fetchProductDetail(productId);
           dispatch(setProduct(productData));
-          console.log("bakalım:", productData)
       } catch (error) {
           console.error('Error fetching product details:', error);
       }
   };
-
   useEffect(() => {
       fetchProductData();
   }, [dispatch, productId]);
 
     if (!product) return <p>Yükleniyor...</p>;
+
+    const handleAddToCart = () => {
+      dispatch(addToCart(product));
+      toast.success("Product Added to Cart")
+    };
+
+    useEffect(() => {
+      console.log("Sepetteki ürünler:", cartControl);
+    }, [cartControl]);
 
   return (
     <>
@@ -108,7 +116,7 @@ export default function ProductDetail() {
           ))}
         </div>
         <div className="flex gap-2">
-          <Button className="flex-1">Select Options</Button>
+          <Button className="flex-1" onClick={handleAddToCart}>Add To Cart</Button>
           <Button variant="outline" size="icon">
             <Heart className="w-4 h-4" />
           </Button>
