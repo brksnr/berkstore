@@ -14,6 +14,7 @@ import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { verifyToken } from './auth'
 import ProductDetail from './components/productDetail'
+import OrderPage from './pages/order'
 
 function App() {
    const dispatch = useDispatch();
@@ -52,8 +53,8 @@ function App() {
         <Route path="/login">
            <LoginForm/>
         </Route>
-        <Route path="/deneme">
-           <SomeComponent/>
+        <Route path="/order">
+           <OrderPage/>
         </Route>
     </Switch>
     </Router>

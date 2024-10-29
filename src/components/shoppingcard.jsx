@@ -1,11 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 export default function ShoppingCart() {
   const cartItems = useSelector(state => state.shoppingCart.cart);
   const totalItems = cartItems.length;
   const totalPrice = cartItems.reduce((sum, item) => sum + (item.product.price * item.count), 0);
+  const history = useHistory();
+
+  const handlePushOrder = () => {
+    history.push("/order");
+  }
+  
   return (
     <Card className="">
       <CardHeader>
@@ -35,7 +42,7 @@ export default function ShoppingCart() {
         )}
       </CardContent>
       <CardFooter className="flex-col items-stretch gap-2">
-        <Button variant="outline" className="w-full">Sepete Git</Button>
+      <Button variant="outline" className="w-full" onClick={handlePushOrder}>Sepete Git</Button>
         <Button className="w-full bg-orange-500 hover:bg-orange-600">Siparişi Tamamla</Button>
         <p className="font-bold">Toplam: {totalPrice.toFixed(2)} TL</p>
       </CardFooter>

@@ -4,6 +4,8 @@ export const SET_ADDRESS = "SET_ADDRESS";
 export const ADD_TO_CART = "ADD_TO_CART";
 export const INCREASE_COUNT = "INCREASE_COUNT";
 export const TOGGLE_CART = "TOGGLE_CART";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
+export const DECREASE_COUNT = "DECREASE_COUNT";
 
 export const setCart = (cart) => ({
   type: SET_CART,
@@ -30,6 +32,16 @@ export const increaseCount = (productId) => ({
   payload: productId,
 });
 
+export const decreaseCount = (productId) => ({
+  type: DECREASE_COUNT,
+  payload: productId,
+});
+
 export const toggleCart = () => ({
   type: TOGGLE_CART,
+});
+
+export const removeFromCart = (productId) => ({
+  type: REMOVE_FROM_CART,
+  payload: productId,
 });
