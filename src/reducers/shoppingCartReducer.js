@@ -3,7 +3,7 @@ import { SET_CART, SET_PAYMENT, SET_ADDRESS, ADD_TO_CART, INCREASE_COUNT, TOGGLE
 const initialState = {
   cart: [],
   payment: {},
-  address: {},
+  address: [],
   isOpen: false,
 };
 
@@ -13,8 +13,11 @@ const shoppingCartReducer = (state = initialState, action) => {
       return { ...state, cart: action.payload }; 
     case SET_PAYMENT:
       return { ...state, payment: action.payload };
-    case SET_ADDRESS:
-      return { ...state, address: action.payload };
+      case SET_ADDRESS:
+        return {
+            ...state,
+            address: [...state.address, action.payload]
+        };
     case TOGGLE_CART:
       return { ...state, isOpen: !state.isOpen };
     case REMOVE_FROM_CART: {

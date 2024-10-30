@@ -9,12 +9,12 @@ import { AboutUsPage } from './pages/aboutus'
 import SignUpForm from './components/signUpForm'
 import { useDispatch} from 'react-redux'
 import LoginForm from './components/loginform'
-import { SomeComponent } from './pages/deneme'
 import { ToastContainer } from 'react-toastify'
 import { useEffect } from 'react'
 import { verifyToken } from './auth'
 import ProductDetail from './components/productDetail'
 import OrderPage from './pages/order'
+import CreateOrder from './pages/createorderpage'
 
 function App() {
    const dispatch = useDispatch();
@@ -55,6 +55,9 @@ function App() {
         </Route>
         <Route path="/order">
            <OrderPage/>
+        </Route>
+        <Route path="/complete">
+           <CreateOrder/>
         </Route>
     </Switch>
     </Router>

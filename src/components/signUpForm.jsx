@@ -36,7 +36,6 @@ const schema = z.object({
   path: ["confirmPassword"],
 });
 
-// Axios request functions
 const apiRequests = {
   fetchRoles: async () => {
     try {
@@ -53,7 +52,7 @@ const apiRequests = {
       return response.data;
     } catch (error) {
       console.log("Error occurred while signing up:", error.response ? error.response.data : error.message);
-      throw error; // Hatanın dışarıya atılması, dışarıda yakalanabilmesi için
+      throw error;
     }
   },
 };
@@ -70,8 +69,8 @@ export default function SignUpForm() {
 
   const selectedRole = watch('role_id');
   const [roles, setRolesState] = useState([]);
-  const [isLoading, setLoading] = useState(false); // Loading durumu eklendi
-  const [errorMessage, setErrorMessage] = useState(""); // Hata mesajı için durum
+  const [isLoading, setLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(""); 
 
   useEffect(() => {
     const fetchRoles = async () => {
@@ -178,7 +177,7 @@ export default function SignUpForm() {
             />
           </div>
 
-          {selectedRole === '2' && ( // Assuming '2' is the ID for Store role
+          {selectedRole === '2' && ( 
             <>
               <div className="space-y-2">
                 <label htmlFor="storeName" className="block">Store Name</label>

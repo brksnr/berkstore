@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -20,6 +20,7 @@ export default function OrderPage() {
     const totalItems = cartItems.length;
     const totalPrice = cartItems.reduce((sum, item) => sum + (item.product.price * item.count), 0);
     const history = useHistory();
+    const [ isPay, setIsPay ] = useState(false);
 
     const handleGoToShopping = () => {
         history.push("/shop")
@@ -98,16 +99,17 @@ export default function OrderPage() {
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline" onClick={handleGoToShopping}>Keep Shopping</Button>
-          <div className="text-right">
-            <p className="text-lg font-semibold">Subtotal : {totalPrice} $</p>
-            <Button className="mt-2">
-              <ShoppingCart className="mr-2 h-4 w-4" />
-              Proceed to Checkout
-            </Button>
-          </div>
+          {isPay ? (null) : (
+            <div className="text-right">
+                      <p className="text-lg font-semibold">Subtotal : {totalPrice} $</p>
+                      <Button className="mt-2" onClick={() => setIsPay(!isPay)}>
+                        <ShoppingCart className="mr-2 h-4 w-4" />
+                        Proceed to Checkout
+                      </Button>
+            </div>)}
         </CardFooter>
       </Card>
-      <OrderCard/>
+      {isPay ? (<OrderCard/>) : (null)}
       </div>
       <div className="mt-4 flex space-x-4">
         <Button variant="link">Önceden Eklediklerim</Button>

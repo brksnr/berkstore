@@ -20,3 +20,13 @@ export const fetchCategories = async () => {
     const response = await axios.get('https://workintech-fe-ecommerce.onrender.com/categories');
     return response.data;
 };
+
+export const fetchAdress = async () => {
+    const response = await axios.get('https://workintech-fe-ecommerce.onrender.com/user/address');
+    return response.data;
+};
+
+export const fetchNewAddress = async () => {
+    const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/user/address');
+    return response.data;
+};
