@@ -12,6 +12,7 @@ import { NavLinks } from '@/layout/navlinks'
 import { Clients } from '@/layout/clients'
 import { Footer } from '@/layout/footer'
 import { decreaseCount, increaseCount, removeFromCart } from '@/actions/shoppingCartActions'
+import OrderCard from '@/components/ordercard'
 
 export default function OrderPage() {
     const dispatch = useDispatch();
@@ -27,7 +28,8 @@ export default function OrderPage() {
   return (
     <>
     <NavLinks/>
-    <div className="container mx-auto p-4">
+    <div>
+    <div className="container mx-auto p-4 flex gap-4">
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">My Cart ({totalItems})</CardTitle>
@@ -91,8 +93,8 @@ export default function OrderPage() {
               <CardFooter>
                 <p className="text-sm text-green-600">Free Shipping</p>
               </CardFooter>
-            </Card>
-          </div>
+            </Card>  
+          </div>   
         </CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="outline" onClick={handleGoToShopping}>Keep Shopping</Button>
@@ -105,6 +107,8 @@ export default function OrderPage() {
           </div>
         </CardFooter>
       </Card>
+      <OrderCard/>
+      </div>
       <div className="mt-4 flex space-x-4">
         <Button variant="link">Önceden Eklediklerim</Button>
         <Button variant="link">Önerilen Ürünler</Button>
