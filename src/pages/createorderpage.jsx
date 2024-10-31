@@ -7,31 +7,39 @@ import { NavLinks } from '@/layout/navlinks'
 import { Clients } from "@/layout/clients"
 import { Footer } from "@/layout/footer"
 import OrderCard from "@/components/ordercard"
-import { fetchAdress } from "@/api"
-import { setAddress } from "@/actions/shoppingCartActions"
+import { fetchAdress, fetchDeleteAddress } from "@/api"
 import { useDispatch, useSelector } from "react-redux"
 import { NewAddress } from "@/components/newaddress"
 
 
 export default function CreateOrder() {
     const [isOpen, setIsOpen] = useState(false);
+    const [addresses, setAddresses] = useState([]);
     const dispatch = useDispatch();
     const [selectedAddress, setSelectedAddress] = useState('home')
     useEffect(() => {
         const getAddress = async () => {
-            
             try {
-                const address = await fetchAdress();
-                dispatch(setAddress(address));
-                console.log("bakalım:", address)
+                const response = await fetchAdress();
+                console.log("bakalım:", response)
+                setAddresses(response);
             }
             catch (error) {
                 console.error("Error fetching address", error);
             }
         }
         getAddress();
-    }, [dispatch])
-    const addresses = useSelector((state) => state.shoppingCart.address);
+    }, [])
+
+    const handleDelete = async (id) => {
+      try {
+        const response = await fetchDeleteAddress(id);
+        console.log("Adres silindi:", response);
+      }
+      catch (error){
+          console.error("Error deleting address", error)
+      }
+    }
 
   return (
     <>
@@ -89,15 +97,12 @@ export default function CreateOrder() {
                 key={address.id || index}
                 className={cn(
                 "cursor-pointer border-2 transition-colors hover:bg-accent",
-                selectedAddress === address.title ? "border-primary" : "border-border"
+                selectedAddress === address.id ? "border-primary" : "border-border"
                 )}
-                onClick={() => setSelectedAddress(address.title)}>
+                onClick={() => setSelectedAddress(address.id)}>
                 <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                 <div className="font-medium">{address.title}</div>
-                {selectedAddress === address.title && (
-                <Check className="h-5 w-5 text-primary" />
-                )}
                 </div>
                 <div className="mt-1 text-sm text-muted-foreground">{address.phone}</div>
                 <div className="mt-2 text-sm text-muted-foreground">
@@ -106,6 +111,7 @@ export default function CreateOrder() {
                 {address.district}/{address.city}
                 </div>
                 </CardContent>
+                <p className="text-right mr-4 mb-4"><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash hover:bg-blue-200"></i></button></p>
                 </Card>
                 ))}
         </div>

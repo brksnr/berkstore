@@ -26,7 +26,12 @@ export const fetchAdress = async () => {
     return response.data;
 };
 
-export const fetchNewAddress = async () => {
-    const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/user/address');
+export const fetchNewAddress = async (formData) => {
+    const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/user/address', formData);
     return response.data;
 };
+export const fetchDeleteAddress = async (addressId) => {
+    const response = await axios.delete(`https://workintech-fe-ecommerce.onrender.com/user/address/${addressId}`);
+    return response.data;
+};
+

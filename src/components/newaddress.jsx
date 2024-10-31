@@ -11,18 +11,23 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
 
 export function NewAddress ({isOpen, setIsOpen}) {
-    const dispatch = useDispatch();
 
     const onSubmit = async (e) => {
         e.preventDefault(); 
+        const formData = {
+            title: e.target.title.value,
+            name: e.target.name.value,
+            surname: e.target.surname.value,
+            phone: e.target.phone.value,
+            district: e.target.district.value,
+            neighborhood: e.target.neighborhood.value,
+            city: e.target.address.value
+        };
         try {
-          const address = await fetchNewAddress(); 
-          dispatch(setAddress(address)); 
-          console.log("bakalım:", address);
+          const newAddress = await fetchNewAddress(formData); 
+          console.log("new adress:", newAddress);
           setIsOpen(false); 
         } catch (error) {
           console.error("Error fetching address", error);
@@ -70,8 +75,8 @@ export function NewAddress ({isOpen, setIsOpen}) {
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="district">il</Label>
-                            <Input id="district" name="district" required />
+                            <Label htmlFor="city">il</Label>
+                            <Input id="city" name="city" required />
                         </div>
 
                         <div className="space-y-2">
