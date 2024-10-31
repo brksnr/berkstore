@@ -10,13 +10,20 @@ import OrderCard from "@/components/ordercard"
 import { fetchAdress, fetchDeleteAddress } from "@/api"
 import { useDispatch, useSelector } from "react-redux"
 import { NewAddress } from "@/components/newaddress"
+import { ChangeAddress } from "@/components/changeaddress"
+import CreditCard from "@/components/creditcard"
 
 
 export default function CreateOrder() {
     const [isOpen, setIsOpen] = useState(false);
+    const [changeOpen, setChangeOpen] = useState(false);
     const [addresses, setAddresses] = useState([]);
     const dispatch = useDispatch();
-    const [selectedAddress, setSelectedAddress] = useState('home')
+    const [selectedAddress, setSelectedAddress] = useState(null); 
+    const [selectedAddressDetails, setSelectedAddressDetails] = useState(null);
+    const [onCredit, setOnCredit] = useState(false);
+
+  
     useEffect(() => {
         const getAddress = async () => {
             try {
@@ -33,23 +40,40 @@ export default function CreateOrder() {
 
     const handleDelete = async (id) => {
       try {
-        const response = await fetchDeleteAddress(id);
-        console.log("Adres silindi:", response);
+          const response = await fetchDeleteAddress(id);
+          console.log("Adres silindi:", response);
+          setAddresses(addresses.filter(address => address.id !== id));
+          if (selectedAddress === id) {
+              setSelectedAddress(null);
+              setSelectedAddressDetails(null);
+          }
+      } catch (error) {
+          console.error("Error deleting address", error);
       }
-      catch (error){
-          console.error("Error deleting address", error)
-      }
-    }
+  };
+
+    const handleNewAddress = async () => {
+      const response = await fetchAdress();
+      setAddresses(response); 
+  };
+
+  const handleAddressSelect = (address) => {
+    setSelectedAddress(address.id);
+    setSelectedAddressDetails(address); 
+    console.log("seçilen createorder:", selectedAddressDetails)
+};
 
   return (
     <>
     <NavLinks/>
-    <NewAddress isOpen={isOpen} setIsOpen={setIsOpen}/>
-    <div className="mx-auto max-w-7xl space-y-8 p-4">
+    <ChangeAddress changeOpen={changeOpen} setChangeOpen={setChangeOpen} selectedAddressDetails={selectedAddressDetails} />
+    <NewAddress isOpen={isOpen} setIsOpen={setIsOpen} onNewAddress={handleNewAddress}/>
+    <div className="mx-auto max-w-10xl space-y-8 p-4 lg:flex lg:gap-4">
+      <div className="flex flex-col gap-4">
       <div className="grid gap-8 md:grid-cols-2">
-        <Card
+      <Card
           className="cursor-pointer transition-colors hover:bg-accent"
-          onClick={() => console.log('Adres bilgileri clicked')}
+          onClick={() => setOnCredit(false)}
         >
           <CardHeader>
             <CardTitle className="text-xl font-medium">Adres Bilgileri</CardTitle>
@@ -57,14 +81,13 @@ export default function CreateOrder() {
           <CardContent className="space-y-4">
             <div className="flex items-center justify-between">
               <span className="text-sm text-muted-foreground"></span>
-              <Button variant="ghost" size="sm">
-                Düzenle
-              </Button>
             </div>
             <div className="text-sm">
-              İstiklal Mah dfsadsadasdasd adsa sdas asd a
+              {selectedAddressDetails ? selectedAddressDetails.title : ""}
               <br />
-              26000 - Eskişehir/Odunpazarı
+              {selectedAddressDetails ? selectedAddressDetails.city : ""}/{selectedAddressDetails ? selectedAddressDetails.district : ""}
+              <br/>
+              {selectedAddressDetails ? selectedAddressDetails.phone : ""}
             </div>
             <ChevronRight className="ml-auto h-4 w-4 text-muted-foreground" />
           </CardContent>
@@ -72,7 +95,7 @@ export default function CreateOrder() {
 
         <Card
           className="cursor-pointer transition-colors hover:bg-accent"
-          onClick={() => console.log('Ödeme seçenekleri clicked')}
+          onClick={() => setOnCredit(true)}
         >
           <CardHeader>
             <CardTitle className="text-xl font-medium">Ödeme Seçenekleri</CardTitle>
@@ -85,8 +108,10 @@ export default function CreateOrder() {
           </CardContent>
         </Card>
       </div>
+      {onCredit ? (<CreditCard/>):(
 
-      <Card>
+
+<Card>
         <CardHeader>
           <CardTitle className="text-xl font-medium">Teslimat Adresi</CardTitle>
         </CardHeader>
@@ -99,7 +124,7 @@ export default function CreateOrder() {
                 "cursor-pointer border-2 transition-colors hover:bg-accent",
                 selectedAddress === address.id ? "border-primary" : "border-border"
                 )}
-                onClick={() => setSelectedAddress(address.id)}>
+                onClick={() => handleAddressSelect(address)}>
                 <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                 <div className="font-medium">{address.title}</div>
@@ -111,7 +136,7 @@ export default function CreateOrder() {
                 {address.district}/{address.city}
                 </div>
                 </CardContent>
-                <p className="text-right mr-4 mb-4"><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash hover:bg-blue-200"></i></button></p>
+                <p className="text-right mr-4 mb-4 flex justify-end gap-4"><button  onClick={() => {setChangeOpen(true);  setSelectedAddress(address.id);}}><i class="fa-solid fa-gear"></i></button><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash hover:bg-blue-200"></i></button></p>
                 </Card>
                 ))}
         </div>
@@ -145,7 +170,10 @@ export default function CreateOrder() {
           </div>
         </CardContent>
       </Card>
-    </div>
+      )}
+      </div>
+      <OrderCard/>
+      </div> 
     <Clients/>
     <Footer/>
     </>

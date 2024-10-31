@@ -34,4 +34,20 @@ export const fetchDeleteAddress = async (addressId) => {
     const response = await axios.delete(`https://workintech-fe-ecommerce.onrender.com/user/address/${addressId}`);
     return response.data;
 };
+export const fetchChangeAddress = async ({ formData }) => {
+    const response = await axios.put(`https://workintech-fe-ecommerce.onrender.com/user/address`, formData);
+    return response.data;
+};
+
+export const fetchGetCard = async () => {
+    const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/user/card`);
+    return response.data;
+};
+
+export const fetchNewCard = async (formData) => {
+    const response = await axios.post(`https://workintech-fe-ecommerce.onrender.com/user/card`, formData);
+    return response.data;
+};
+
+
 

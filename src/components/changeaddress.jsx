@@ -1,4 +1,4 @@
-import { fetchNewAddress } from "@/api"
+import { fetchChangeAddress} from "@/api"
 import { Button } from "@/components/ui/button"
 import {
   Dialog,
@@ -11,34 +11,41 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 
-export function NewAddress ({isOpen, setIsOpen, onNewAddress}) {
+export function ChangeAddress ({ changeOpen, setChangeOpen, selectedAddressDetails }) {
 
     const onSubmit = async (e) => {
-        e.preventDefault(); 
-        const formData = {
-            title: e.target.title.value,
-            name: e.target.name.value,
-            surname: e.target.surname.value,
-            phone: e.target.phone.value,
-            district: e.target.district.value,
-            neighborhood: e.target.neighborhood.value,
-            city: e.target.city.value
-        };
-        try {
-          const newAddress = await fetchNewAddress(formData); 
-          console.log("new adress:", newAddress);
-          setIsOpen(false);
-          onNewAddress();
-        } catch (error) {
-          console.error("Error fetching address", error);
-        }
-      };
+    e.preventDefault();
+    
+    const formData = {
+        
+            "id": "5",
+            "title": "İş Adresi",
+            "name": "Berk Bey diyeceksiniz",
+            "surname": "Şener",
+            "phone": "05378923111",
+            "city": "istanbul",
+            "district": "esenler",
+            "neighborhood": "adres detayları",
+            "address" : "asdad"
+        
+    };
+
+    try {
+        
+        const changeAddress = await fetchChangeAddress(formData);
+        console.log("new address:", changeAddress);
+        setChangeOpen(false);
+    } catch (error) {
+        console.error("Error fetching address", error);
+        console.log("formdata:", formData)
+    }
+};
     return (
         <>
-            <Dialog open={isOpen} onOpenChange={setIsOpen}>
+            <Dialog open={changeOpen} onOpenChange={setChangeOpen}>
                 <DialogContent className="sm:max-w-[500px]">
                     <DialogHeader>
-                        <DialogTitle>Yeni Adres Ekle</DialogTitle>
+                        <DialogTitle>Adres Bilgilerini Güncelle</DialogTitle>
                     </DialogHeader>
                     <form className="space-y-4" onSubmit={onSubmit}>
                         <div className="space-y-2">
@@ -47,18 +54,29 @@ export function NewAddress ({isOpen, setIsOpen, onNewAddress}) {
                                 id="title"
                                 name="title"
                                 placeholder="örn: Ev adresi"
+                                defaultValue={selectedAddressDetails?.title} 
                                 required
                             />
                         </div>
-                        
+
                         <div className="grid gap-4 sm:grid-cols-2">
                             <div className="space-y-2">
                                 <Label htmlFor="name">Ad</Label>
-                                <Input id="name" name="name" required />
+                                <Input
+                                    id="name"
+                                    name="name"
+                                    defaultValue={selectedAddressDetails?.name} 
+                                    required
+                                />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="surname">Soyad</Label>
-                                <Input id="surname" name="surname" required />
+                                <Input
+                                    id="surname"
+                                    name="surname"
+                                    defaultValue={selectedAddressDetails?.surname}
+                                    required
+                                />
                             </div>
                         </div>
 
@@ -69,23 +87,39 @@ export function NewAddress ({isOpen, setIsOpen, onNewAddress}) {
                                 name="phone"
                                 type="tel"
                                 placeholder="05XX XXX XX XX"
+                                defaultValue={selectedAddressDetails?.phone} 
                                 required
                             />
                         </div>
 
                         <div className="space-y-2">
-                            <Label htmlFor="city">il</Label>
-                            <Input id="city" name="city" required />
+                            <Label htmlFor="city">İl</Label>
+                            <Input
+                                id="city"
+                                name="city"
+                                defaultValue={selectedAddressDetails?.city} 
+                                required
+                            />
                         </div>
 
                         <div className="space-y-2">
                             <Label htmlFor="district">İlçe</Label>
-                            <Input id="district" name="district" required />
+                            <Input
+                                id="district"
+                                name="district"
+                                defaultValue={selectedAddressDetails?.district} 
+                                required
+                            />
                         </div>
 
                         <div className="space-y-2">
                             <Label htmlFor="neighborhood">Mahalle</Label>
-                            <Input id="neighborhood" name="neighborhood" required />
+                            <Input
+                                id="neighborhood"
+                                name="neighborhood"
+                                defaultValue={selectedAddressDetails?.neighborhood} 
+                                required
+                            />
                         </div>
 
                         <div className="space-y-2">
@@ -95,6 +129,7 @@ export function NewAddress ({isOpen, setIsOpen, onNewAddress}) {
                                 name="address"
                                 placeholder="Sokak, bina ve kapı numarası"
                                 className="min-h-[100px]"
+                                defaultValue={selectedAddressDetails?.address} 
                                 required
                             />
                         </div>
