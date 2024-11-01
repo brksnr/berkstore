@@ -137,7 +137,7 @@ export default function CreateOrder() {
                 {address.district}/{address.city}
                 </div>
                 </CardContent>
-                <p className="text-right mr-4 mb-4 flex justify-end gap-4"><button  onClick={() => {setChangeOpen(true);  setSelectedAddress(address.id);}}><i class="fa-solid fa-gear"></i></button><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash hover:bg-blue-200"></i></button></p>
+                <p className="text-right mr-4 mb-4 flex justify-end gap-4"><button  onClick={() => {setChangeOpen(true);  setSelectedAddress(address.id);}}><i class="fa-solid fa-gear"></i></button><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash"></i></button></p>
                 </Card>
                 ))}
         </div>

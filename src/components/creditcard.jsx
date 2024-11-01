@@ -4,7 +4,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
-import { fetchGetCard } from "@/api"
+import { fetchDeleteCard, fetchGetCard } from "@/api"
 import AddCard from "./addcard"
 
 export default function CreditCard() {
@@ -24,6 +24,16 @@ export default function CreditCard() {
         };
         getCards();
     }, []);
+
+    const handleDeleteCard = async (cardId) => {
+      try {
+          await fetchDeleteCard(cardId); // Kartı sil
+          setCards(cards.filter(card => card.id !== cardId)); // Kart listesinden sil
+      } catch (error) {
+          console.error("Error deleting card", error);
+      }
+  };
+   
 
     return (
         <div className="w-full max-w-10xl mx-auto">
@@ -59,6 +69,7 @@ export default function CreditCard() {
                                                     <div className="mt-1">{cardItem.expire_month}/{cardItem.expire_year}</div>
                                                     <div className="mt-1 font-bold">{cardItem.name_on_card}</div>
                                                 </div>
+                                                <button onClick={() => handleDeleteCard(cardItem.id)} className="w-full text-right"><i className="fa-solid fa-trash"></i></button>
                                             </div>
                                         </Label>
                                     </div>
