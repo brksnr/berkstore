@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
 import { fetchNewCard } from "@/api";
 
-export default function AddCard({ addOpen, setAddOpen }) {
+export default function AddCard({ addOpen, setAddOpen, setCards }) {
     const months = Array.from({ length: 12 }, (_, i) => ({
         value: (i + 1).toString().padStart(2, '0'),
         label: (i + 1).toString().padStart(2, '0'),
@@ -30,6 +30,7 @@ export default function AddCard({ addOpen, setAddOpen }) {
             const newCard = await fetchNewCard(formData);
             console.log("Yeni kart:", newCard);
             setAddOpen(false);
+            
         } catch (error) {
             console.error("Error fetching address", error);
             setAddOpen(false);

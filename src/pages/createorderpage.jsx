@@ -12,16 +12,18 @@ import { useDispatch, useSelector } from "react-redux"
 import { NewAddress } from "@/components/newaddress"
 import { ChangeAddress } from "@/components/changeaddress"
 import CreditCard from "@/components/creditcard"
+import { setAddresses } from "@/actions/shoppingCartActions"
 
 
 export default function CreateOrder() {
     const [isOpen, setIsOpen] = useState(false);
     const [onCredit, setOnCredit] = useState(false);
     const [changeOpen, setChangeOpen] = useState(false);
-    const [addresses, setAddresses] = useState([]);
     const dispatch = useDispatch();
-    const [selectedAddress, setSelectedAddress] = useState(null); 
+    const [selectedAddress, setSelectedAddress] = useState(null);
     const [selectedAddressDetails, setSelectedAddressDetails] = useState(null);
+    const addresses = useSelector(state => state.shoppingCart.addresses);
+    
     
 
   
@@ -29,8 +31,8 @@ export default function CreateOrder() {
         const getAddress = async () => {
             try {
                 const response = await fetchAdress();
-                console.log("bakalım:", response)
-                setAddresses(response);
+                console.log("bakalım:", response);
+                dispatch(setAddresses(response));
             }
             catch (error) {
                 console.error("Error fetching address", error);
@@ -63,6 +65,7 @@ export default function CreateOrder() {
     setSelectedAddressDetails(address); 
     console.log("seçilen createorder:", selectedAddressDetails)
 };
+  console.log("store gelmişmi:", addresses)
 
   return (
     <>

@@ -1,9 +1,9 @@
-import { SET_CART, SET_PAYMENT, SET_ADDRESS, ADD_TO_CART, INCREASE_COUNT, TOGGLE_CART, REMOVE_FROM_CART, DECREASE_COUNT } from '../actions/shoppingCartActions';
+import { SET_CART, SET_PAYMENT, SET_ADDRESSES, ADD_TO_CART, INCREASE_COUNT, TOGGLE_CART, REMOVE_FROM_CART, DECREASE_COUNT } from '../actions/shoppingCartActions';
 
 const initialState = {
   cart: [],
   payment: {},
-  address: [],
+  addresses: [],
   isOpen: false,
 };
 
@@ -13,11 +13,12 @@ const shoppingCartReducer = (state = initialState, action) => {
       return { ...state, cart: action.payload }; 
     case SET_PAYMENT:
       return { ...state, payment: action.payload };
-      case SET_ADDRESS:
-        return {
-            ...state,
-            address: [...state.address, action.payload]
-        };
+      case SET_ADDRESSES:
+        console.log("Güncellenen adresler:", action.payload);
+      return {
+        ...state,
+        addresses: action.payload,
+      };
     case TOGGLE_CART:
       return { ...state, isOpen: !state.isOpen };
     case REMOVE_FROM_CART: {

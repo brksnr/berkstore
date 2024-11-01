@@ -33,7 +33,7 @@ export default function CreditCard() {
     const handleDeleteCard = async (cardId) => {
       try {
           await fetchDeleteCard(cardId);
-          setCards(cards.filter(card => card.id !== cardId)); 
+          setCards(cards.filter(card => card.id !== cardId));
       } catch (error) {
           console.error("Error deleting card", error);
       }
@@ -50,7 +50,7 @@ export default function CreditCard() {
 
     return (
         <div className="w-full max-w-10xl mx-auto">
-            <AddCard addOpen={addOpen} setAddOpen={setAddOpen} />
+            <AddCard addOpen={addOpen} setAddOpen={setAddOpen} setCards={setCards} />
             <ChangeCard changeOpen={changeOpen} setChangeOpen={setChangeOpen} selectedCard={selectedCard} selectedCardId={selectedCardId} />
             <Card className="flex gap-3">
                       <div className="w-full">
