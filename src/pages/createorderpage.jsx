@@ -16,12 +16,13 @@ import CreditCard from "@/components/creditcard"
 
 export default function CreateOrder() {
     const [isOpen, setIsOpen] = useState(false);
+    const [onCredit, setOnCredit] = useState(false);
     const [changeOpen, setChangeOpen] = useState(false);
     const [addresses, setAddresses] = useState([]);
     const dispatch = useDispatch();
     const [selectedAddress, setSelectedAddress] = useState(null); 
     const [selectedAddressDetails, setSelectedAddressDetails] = useState(null);
-    const [onCredit, setOnCredit] = useState(false);
+    
 
   
     useEffect(() => {
