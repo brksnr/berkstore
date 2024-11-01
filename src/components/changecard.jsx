@@ -4,9 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { fetchNewCard } from "@/api";
+import { fetchChangeCard } from "@/api";
 
-export default function AddCard({ addOpen, setAddOpen }) {
+export default function ChangeCard({changeOpen, setChangeOpen, selectedCard, selectedCardId}) {
     const months = Array.from({ length: 12 }, (_, i) => ({
         value: (i + 1).toString().padStart(2, '0'),
         label: (i + 1).toString().padStart(2, '0'),
@@ -21,23 +21,24 @@ export default function AddCard({ addOpen, setAddOpen }) {
     const onSubmit = async (e) => {
         e.preventDefault();
         const formData = {
+            id : selectedCardId,
           card_no: e.target.cardNumber.value, 
           expire_month: e.target.expireMonth.value,
           expire_year: e.target.expireYear.value, 
           name_on_card: e.target.adSoy.value 
         };
         try {
-            const newCard = await fetchNewCard(formData);
-            console.log("Yeni kart:", newCard);
-            setAddOpen(false);
+            const newCard = await fetchChangeCard(formData);
+            console.log("değişmiş kart:", newCard);
+            setChangeOpen(false);
         } catch (error) {
             console.error("Error fetching address", error);
-            setAddOpen(false);
+            setChangeOpen(false);
         }
     };
 
     return (
-        <Dialog open={addOpen} onOpenChange={setAddOpen}>
+        <Dialog open={changeOpen} onOpenChange={setChangeOpen}>
             <DialogContent>
               <form onSubmit={onSubmit}>
                 <DialogHeader>
@@ -46,12 +47,12 @@ export default function AddCard({ addOpen, setAddOpen }) {
                 <CardContent className="space-y-6">
                     <div className="space-y-2">
                         <Label htmlFor="adSoy">Ad Soyad</Label>
-                        <Input id="adSoy" name="adSoy" placeholder="Berkstore Store" className="font-mono" />
+                        <Input id="adSoy" name="adSoy" defaultValue={selectedCard?.name_on_card} className="font-mono" />
                     </div>
 
                     <div className="space-y-2">
                         <Label htmlFor="cardNumber">Kart Numarası</Label>
-                        <Input id="cardNumber" name="cardNumber" placeholder="0000 0000 0000 0000" className="font-mono" />
+                        <Input id="cardNumber" name="cardNumber" defaultValue={selectedCard?.card_no} className="font-mono" />
                     </div>
 
                     <div className="grid grid-cols-[1fr,1fr,120px] gap-4 items-end">
@@ -59,8 +60,8 @@ export default function AddCard({ addOpen, setAddOpen }) {
                             <Label>Son Kullanma Tarihi</Label>
                             <div className="grid grid-cols-2 gap-2 mt-2">
                                 <Select name="expireMonth">
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Ay" />
+                                    <SelectTrigger >
+                                        <SelectValue  placeholder={selectedCard?.expire_month} />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {months.map((month) => (
@@ -73,7 +74,7 @@ export default function AddCard({ addOpen, setAddOpen }) {
 
                                 <Select name="expireYear">
                                     <SelectTrigger>
-                                        <SelectValue placeholder="Yıl" />
+                                        <SelectValue placeholder={selectedCard?.expire_year} />
                                     </SelectTrigger>
                                     <SelectContent>
                                         {years.map((year) => (
@@ -96,7 +97,7 @@ export default function AddCard({ addOpen, setAddOpen }) {
                 </CardContent>
                 <DialogFooter className="flex justify-end space-x-4">
                     <DialogClose asChild>
-                        <Button  variant="outline">Vazgeç</Button>
+                        <Button variant="outline">Vazgeç</Button>
                     </DialogClose>
                     <Button>Kaydet</Button>
                 </DialogFooter>

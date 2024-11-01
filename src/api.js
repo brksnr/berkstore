@@ -54,5 +54,10 @@ export const fetchDeleteCard = async (cardId) => {
     return response.data;
 };
 
+export const fetchChangeCard = async (formData) => {
+    const response = await axios.put(`https://workintech-fe-ecommerce.onrender.com/user/card`, formData);
+    return response.data;
+};
+
 
 
