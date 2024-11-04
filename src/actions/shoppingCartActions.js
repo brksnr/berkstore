@@ -6,6 +6,8 @@ export const INCREASE_COUNT = "INCREASE_COUNT";
 export const TOGGLE_CART = "TOGGLE_CART";
 export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 export const DECREASE_COUNT = "DECREASE_COUNT";
+export const SELECTED_ADDRESS_ID = "SELECTED_ADDRESS_ID"; 
+export const SET_SELECTED_CREDIT_CARD = "SET_SELECTED_CREDIT_CARD";
 
 export const setCart = (cart) => ({
   type: SET_CART,
@@ -20,6 +22,16 @@ export const setPayment = (payment) => ({
 export const setAddresses = (addresses) => ({
   type: SET_ADDRESSES,
   payload: addresses,
+});
+
+export const setSelectedAddressId = (selectedAddressId) => ({
+  type: SELECTED_ADDRESS_ID,
+  payload: selectedAddressId,
+});
+
+export const setSelectedCreditCard = (creditCardId) => ({
+  type: SET_SELECTED_CREDIT_CARD,
+  payload: creditCardId,
 });
 
 export const addToCart = (product) => ({

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { NewAddress } from "@/components/newaddress"
 import { ChangeAddress } from "@/components/changeaddress"
 import CreditCard from "@/components/creditcard"
-import { setAddresses } from "@/actions/shoppingCartActions"
+import { setAddresses, setSelectedAddressId } from "@/actions/shoppingCartActions"
 
 
 export default function CreateOrder() {
@@ -20,18 +20,15 @@ export default function CreateOrder() {
     const [onCredit, setOnCredit] = useState(false);
     const [changeOpen, setChangeOpen] = useState(false);
     const dispatch = useDispatch();
-    const [selectedAddress, setSelectedAddress] = useState(null);
-    const [selectedAddressDetails, setSelectedAddressDetails] = useState(null);
     const addresses = useSelector(state => state.shoppingCart.addresses);
+    const selectedId = useSelector(state => state.shoppingCart.addressId);
+    const [selectedAddressDetails, setSelectedAddressDetails] = useState(null);
     
-    
-
   
     useEffect(() => {
         const getAddress = async () => {
             try {
                 const response = await fetchAdress();
-                console.log("bakalım:", response);
                 dispatch(setAddresses(response));
             }
             catch (error) {
@@ -46,8 +43,8 @@ export default function CreateOrder() {
           const response = await fetchDeleteAddress(id);
           console.log("Adres silindi:", response);
           setAddresses(addresses.filter(address => address.id !== id));
-          if (selectedAddress === id) {
-              setSelectedAddress(null);
+          if (selectedId === id) {
+              setSelectedAddressId(null);
               setSelectedAddressDetails(null);
           }
       } catch (error) {
@@ -61,11 +58,9 @@ export default function CreateOrder() {
   };
 
   const handleAddressSelect = (address) => {
-    setSelectedAddress(address.id);
+    dispatch(setSelectedAddressId(address.id));
     setSelectedAddressDetails(address); 
-    console.log("seçilen createorder:", selectedAddressDetails)
 };
-  console.log("store gelmişmi:", addresses)
 
   return (
     <>
@@ -126,7 +121,7 @@ export default function CreateOrder() {
                 key={address.id || index}
                 className={cn(
                 "cursor-pointer border-2 transition-colors hover:bg-accent",
-                selectedAddress === address.id ? "border-primary" : "border-border"
+                selectedId === address.id ? "border-primary" : "border-border"
                 )}
                 onClick={() => handleAddressSelect(address)}>
                 <CardContent className="p-4">
@@ -140,7 +135,7 @@ export default function CreateOrder() {
                 {address.district}/{address.city}
                 </div>
                 </CardContent>
-                <p className="text-right mr-4 mb-4 flex justify-end gap-4"><button  onClick={() => {setChangeOpen(true);  setSelectedAddress(address.id);}}><i class="fa-solid fa-gear"></i></button><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash"></i></button></p>
+                <p className="text-right mr-4 mb-4 flex justify-end gap-4"><button  onClick={() => {setChangeOpen(true);  setSelectedAddress(address.id);}}><i className="fa-solid fa-gear"></i></button><button onClick={() => handleDelete(address.id)}><i className="fa-solid fa-trash"></i></button></p>
                 </Card>
                 ))}
         </div>

@@ -6,13 +6,14 @@ import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 import { fetchDeleteCard, fetchGetCard } from "@/api"
 import AddCard from "./addcard"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import ChangeCard from "./changecard"
+import { setSelectedCreditCard } from "@/actions/shoppingCartActions"
 
 export default function CreditCard() {
+    const dispatch = useDispatch();
     const [cards, setCards] = useState([]);
     const [selectedCardId, setSelectedCardId] = useState(null);
-    const [ selectedCard, setSelectedCard ] = useState({});
     const [addOpen, setAddOpen] = useState(false);
     const [changeOpen, setChangeOpen ] = useState(false);
     const cartItems = useSelector(state => state.shoppingCart.cart);
@@ -42,8 +43,7 @@ export default function CreditCard() {
   useEffect(() => {
     if (selectedCardId) {
         const card = cards.find(cardItem => cardItem.id === parseInt(selectedCardId));
-        setSelectedCard(card);
-        console.log("idyebak:", selectedCard)
+        dispatch(setSelectedCreditCard(card));
     }
 }, [selectedCardId, cards]);
    
@@ -51,7 +51,7 @@ export default function CreditCard() {
     return (
         <div className="w-full max-w-10xl mx-auto">
             <AddCard addOpen={addOpen} setAddOpen={setAddOpen} setCards={setCards} />
-            <ChangeCard changeOpen={changeOpen} setChangeOpen={setChangeOpen} selectedCard={selectedCard} selectedCardId={selectedCardId} />
+            <ChangeCard changeOpen={changeOpen} setChangeOpen={setChangeOpen} selectedCardId={selectedCardId} />
             <Card className="flex gap-3">
                       <div className="w-full">
                 <CardHeader className="space-y-1">

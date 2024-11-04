@@ -17,8 +17,8 @@ import OrderCard from '@/components/ordercard'
 export default function OrderPage() {
     const dispatch = useDispatch();
     const cartItems = useSelector(state => state.shoppingCart.cart);
+    const totalPrice = useSelector(state => state.shoppingCart.totalPrice);
     const totalItems = cartItems.length;
-    const totalPrice = cartItems.reduce((sum, item) => sum + (item.product.price * item.count), 0);
     const history = useHistory();
     const [ isPay, setIsPay ] = useState(false);
 

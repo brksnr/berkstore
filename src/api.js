@@ -59,5 +59,10 @@ export const fetchChangeCard = async (formData) => {
     return response.data;
 };
 
+export const fetchOrder = async (formData) => {
+    const response = await axios.post(`https://workintech-fe-ecommerce.onrender.com/order`, formData);
+    return response.data;
+};
+
 
 
