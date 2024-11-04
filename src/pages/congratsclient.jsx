@@ -7,12 +7,17 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function OrderConfirmation() {
   const orderItems = useSelector(state => state.shoppingCart.cart); 
   const total = useSelector(state => state.shoppingCart.totalPrice); 
   const date = new Date().toLocaleDateString('tr-TR');
-  const orderId = `ORD${Math.floor(Math.random() * 100000).toString().padStart(5, '0')}`; 
+  const orderId = `ORD${Math.floor(Math.random() * 100000).toString().padStart(5, '0')}`;
+  const history = useHistory();
+  const handleKeepShopping = () => {
+    history.push("/shop")
+  }
 
   return (
     <div className="flex h-screen w-full items-center justify-center px-4">
@@ -44,7 +49,7 @@ export default function OrderConfirmation() {
                 <span>{total.toFixed(2)} TL</span>
               </div>
             </div>
-            <Button className="w-full mt-4">
+            <Button onClick={handleKeepShopping} className="w-full mt-4">
               Alışverişe Devam Et
             </Button>
           </div>

@@ -16,6 +16,7 @@ import ProductDetail from './components/productDetail'
 import OrderPage from './pages/order'
 import CreateOrder from './pages/createorderpage'
 import OrderConfirmation from './pages/congratsclient'
+import PreviousOrders from './pages/previousorders'
 
 function App() {
    const dispatch = useDispatch();
@@ -62,6 +63,9 @@ function App() {
         </Route>
         <Route path="/congrats">
            <OrderConfirmation/>
+        </Route>
+        <Route path="/previousOrders">
+           <PreviousOrders/>
         </Route>
     </Switch>
     </Router>

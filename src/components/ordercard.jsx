@@ -1,8 +1,9 @@
+import { setCart } from "@/actions/shoppingCartActions";
 import { fetchOrder } from "@/api";
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ChevronDown } from "lucide-react"
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -15,6 +16,7 @@ export default function OrderCard() {
   const location = useLocation();
   const isCompletePage = location.pathname === "/complete";
   const isButtonDisabled = !selectedId || !selectedCreditCart;
+  const dispatch = useDispatch();
 
   const handleComplete = async () => {
     if (location.pathname === "/complete" && selectedId && selectedCreditCart) {
@@ -36,7 +38,10 @@ export default function OrderCard() {
       try {
         const response = await fetchOrder(formData);
         console.log("Sipariş başarıyla oluşturuldu:", response);
+        
         history.push("/congrats");
+        dispatch(setCart(null));
+
       } catch (error) {
         console.error("Sipariş oluşturulurken hata oluştu:", error);
       }

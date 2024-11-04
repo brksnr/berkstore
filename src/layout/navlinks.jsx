@@ -8,17 +8,17 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle,
   } from "@/components/ui/navigation-menu"
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import md5 from 'md5';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { Button } from '../components/ui/button';
 import ShoppingCart from '@/components/shoppingcard';
-import { toggleCart } from '@/actions/shoppingCartActions';
+import { Card, CardTitle } from 'reactstrap';
+import { CardHeader } from '@/components/ui/card';
 
 export function NavLinks () {
     const cartControl = useSelector(state => state.shoppingCart.cart);
-    const dispatch = useDispatch();
     const history = useHistory();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [isLogIn, setIsLogIn] = useState(true);
@@ -31,11 +31,16 @@ export function NavLinks () {
         console.log('Logged out, token silindi.');
         window.location.reload();
     };
-
     const [isCartOpen, setIsCartOpen] = useState(false);
     const toggleCart = () => {
-        setIsCartOpen(!isCartOpen); 
+        setIsCartOpen(!isCartOpen);
     };
+
+    const [isPrevOrdersOpen, setIsPrevOrdersOpen] = useState(false);
+    const togglePrevOrders = () => {
+        setIsPrevOrdersOpen(!isPrevOrdersOpen);
+        console.log(isPrevOrdersOpen);
+    }
 
     const user = useSelector((state) => state.client.user);
     const categories = useSelector((state) => state.product.categories);
@@ -157,13 +162,20 @@ export function NavLinks () {
                                           )}
                                 
                             </div>
-                            <div className="flex gap-9">
+                            <div className="flex gap-9 items-center">
                             <i className="fa-solid fa-cart-shopping flex gap-2 items-center" onClick={toggleCart}>
                                 <button className='rounded-full border-bg-primary w-5 h-5 bg-blue-500 h-3 text-white font-thin text-xs bg-primary'>{cartControl.length}</button></i>
-                            <i className="fa-solid fa-bars"></i>
+                            <button onClick={togglePrevOrders}><i className="fa-solid fa-bars"></i></button>
                             <i className="fa-regular fa-heart"></i>
                             </div>
                         </div>
+                        {isPrevOrdersOpen && (
+                            <Card className="absolute right-12 mt-5">
+                                <CardHeader>
+                                    <Button><Link to="/previousOrders"><p>Previous Orders</p></Link></Button>
+                                </CardHeader>
+                            </Card>
+                        )}
                         {isCartOpen && (
                 <div className="absolute right-4 mt-5">
                     <ShoppingCart />

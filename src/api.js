@@ -64,5 +64,10 @@ export const fetchOrder = async (formData) => {
     return response.data;
 };
 
+export const fetchGetOrders = async () => {
+    const response = await axios.get(`https://workintech-fe-ecommerce.onrender.com/order`);
+    return response.data;
+};
+
 
 
