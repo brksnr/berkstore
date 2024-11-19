@@ -111,16 +111,6 @@ export default function OrderPage() {
       </Card>
       {isPay ? (<OrderCard/>) : (null)}
       </div>
-      <div className="mt-4 flex space-x-4">
-        <Button variant="link">Önceden Eklediklerim</Button>
-        <Button variant="link">Önerilen Ürünler</Button>
-        <Button variant="link">
-          Favorilerim
-          <Badge className="ml-2" variant="secondary">
-            Yeni
-          </Badge>
-        </Button>
-      </div>
     </div>
     <Clients/>
     <Footer/>
