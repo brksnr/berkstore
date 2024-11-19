@@ -16,7 +16,7 @@ export default function ShoppingCart() {
   return (
     <Card className="">
       <CardHeader>
-        <CardTitle>Sepetim ({totalItems} Ürün)</CardTitle>
+        <CardTitle>My Cart ({totalItems} Item)</CardTitle>
       </CardHeader>
       <CardContent>
         {cartItems.length === 0 ? (
@@ -42,8 +42,8 @@ export default function ShoppingCart() {
         )}
       </CardContent>
       <CardFooter className="flex-col items-stretch gap-2">
-      <Button variant="outline" className="w-full" onClick={handlePushOrder}>Sepete Git</Button>
-        <Button className="w-full bg-orange-500 hover:bg-orange-600">Siparişi Tamamla</Button>
+      <Button variant="outline" className="w-full" onClick={handlePushOrder}>Go to Cart</Button>
+        <Button className="w-full bg-orange-500 hover:bg-orange-600">Complate Order</Button>
         <p className="font-bold">Toplam: {totalPrice.toFixed(2)} TL</p>
       </CardFooter>
     </Card>

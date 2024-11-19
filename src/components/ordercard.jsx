@@ -38,10 +38,8 @@ export default function OrderCard() {
       try {
         const response = await fetchOrder(formData);
         console.log("Sipariş başarıyla oluşturuldu:", response);
-        
         history.push("/congrats");
         dispatch(setCart(null));
-
       } catch (error) {
         console.error("Sipariş oluşturulurken hata oluştu:", error);
       }
@@ -54,7 +52,7 @@ export default function OrderCard() {
   return (
     <div className="w-full max-w-sm mx-auto space-y-4">
       {isCompletePage ? (
-        <Button className="w-full hover:bg-orange-600 text-white" disabled={isButtonDisabled} onClick={handleComplete}>Onayla ve Bitir</Button>
+        <Button className="w-full hover:bg-orange-600 text-white" disabled={isButtonDisabled} onClick={handleComplete}>Confirm and Finish</Button>
       ) : (
         <Button className="w-full hover:bg-orange-600 text-white" onClick={handleComplete}>Approve Cart</Button>
       )}
@@ -94,7 +92,7 @@ export default function OrderCard() {
         <ChevronDown className="h-4 w-4" />
       </Button>  
       {isCompletePage ? (
-        <Button className="w-full hover:bg-orange-600 text-white" disabled={isButtonDisabled} onClick={handleComplete}>Onayla ve Bitir</Button>
+        <Button className="w-full hover:bg-orange-600 text-white" disabled={isButtonDisabled} onClick={handleComplete}>Confirm and Finish</Button>
       ) : (
         <Button className="w-full hover:bg-orange-600 text-white" onClick={handleComplete}>Approve Cart</Button>
       )}

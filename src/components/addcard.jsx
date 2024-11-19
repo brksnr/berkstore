@@ -4,9 +4,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter, DialogClose } from "@/components/ui/dialog";
-import { fetchNewCard } from "@/api";
+import { fetchGetCard, fetchNewCard } from "@/api";
 
-export default function AddCard({ addOpen, setAddOpen, setCards }) {
+export default function AddCard({ addOpen, setAddOpen, getCards}) {
     const months = Array.from({ length: 12 }, (_, i) => ({
         value: (i + 1).toString().padStart(2, '0'),
         label: (i + 1).toString().padStart(2, '0'),
@@ -29,8 +29,8 @@ export default function AddCard({ addOpen, setAddOpen, setCards }) {
         try {
             const newCard = await fetchNewCard(formData);
             console.log("Yeni kart:", newCard);
+            getCards();
             setAddOpen(false);
-            
         } catch (error) {
             console.error("Error fetching address", error);
             setAddOpen(false);

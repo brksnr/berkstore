@@ -42,7 +42,7 @@ export default function CreateOrder() {
       try {
           const response = await fetchDeleteAddress(id);
           console.log("Adres silindi:", response);
-          setAddresses(addresses.filter(address => address.id !== id));
+          dispatch(setAddresses(addresses.filter(address => address.id !== id)));
           if (selectedId === id) {
               setSelectedAddressId(null);
               setSelectedAddressDetails(null);
@@ -54,7 +54,8 @@ export default function CreateOrder() {
 
     const handleNewAddress = async () => {
       const response = await fetchAdress();
-      setAddresses(response); 
+      dispatch(setAddresses(response));
+      setSelectedAddressDetails(null);
   };
 
   const handleAddressSelect = (address) => {

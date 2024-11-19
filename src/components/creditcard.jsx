@@ -18,16 +18,18 @@ export default function CreditCard() {
     const [changeOpen, setChangeOpen ] = useState(false);
     const cartItems = useSelector(state => state.shoppingCart.cart);
     const totalPrice = cartItems.reduce((sum, item) => sum + (item.product.price * item.count), 0);
+    console.log("cards:", cards);
+
+    const getCards = async () => {
+        try {
+            const response = await fetchGetCard();
+            setCards(response);
+        } catch (error) {
+            console.error("Error fetching cards", error);
+        }
+    };
 
     useEffect(() => {
-        const getCards = async () => {
-            try {
-                const response = await fetchGetCard();
-                setCards(response);
-            } catch (error) {
-                console.error("Error fetching cards", error);
-            }
-        };
         getCards();
     }, []);
 
@@ -35,10 +37,12 @@ export default function CreditCard() {
       try {
           await fetchDeleteCard(cardId);
           setCards(cards.filter(card => card.id !== cardId));
+          setSelectedCardId(null)
       } catch (error) {
           console.error("Error deleting card", error);
       }
   };
+
 
   useEffect(() => {
     if (selectedCardId) {
@@ -50,7 +54,7 @@ export default function CreditCard() {
 
     return (
         <div className="w-full max-w-10xl mx-auto">
-            <AddCard addOpen={addOpen} setAddOpen={setAddOpen} setCards={setCards} />
+            <AddCard addOpen={addOpen} setAddOpen={setAddOpen} getCards={getCards}  />
             <ChangeCard changeOpen={changeOpen} setChangeOpen={setChangeOpen} selectedCardId={selectedCardId} />
             <Card className="flex gap-3">
                       <div className="w-full">

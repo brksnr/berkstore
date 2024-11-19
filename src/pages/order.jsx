@@ -30,7 +30,7 @@ export default function OrderPage() {
     <>
     <NavLinks/>
     <div>
-    <div className="container mx-auto p-4 flex gap-4">
+    <div className="container mx-auto p-4 flex gap-4 flex-col lg:flex-row">
       <Card className="w-full">
         <CardHeader>
           <CardTitle className="text-2xl font-bold">My Cart ({totalItems})</CardTitle>
@@ -55,7 +55,7 @@ export default function OrderPage() {
                 ) 
                 : 
                 ( cartItems.map((item, index) => (
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-4 flex-col lg:flex-row">
                   <img
                     alt="KAOF SHOES Kadın Siyah Klasik Ayakkabı"
                     className="h-32 w-24 rounded-md object-cover"
@@ -73,7 +73,7 @@ export default function OrderPage() {
                     <p className="text-sm text-gray-500">Stock: {item.product.stock}</p>
                     <p className="text-sm text-gray-500">If you order within {Math.floor(Math.random() * 101)} minutes, it will be shipped tomorrow at the latest!</p>
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 pt-3 lg:pt-0">
                     <Button size="icon" variant="outline" onClick={() => dispatch(decreaseCount(item.product.id))}>
                       <Minus className="h-4 w-4" />
                     </Button>
@@ -82,7 +82,7 @@ export default function OrderPage() {
                       <Plus className="h-4 w-4" />
                     </Button>
                   </div>
-                  <div className="text-right">
+                  <div className="text-right flex items-center">
                     <p className="text-lg font-semibold">{(item.product.price * item.count).toFixed(2)} $</p>
                     <Button size="icon" variant="ghost" onClick={() => dispatch(removeFromCart(item.product.id))}>
                       <Trash2 className="h-4 w-4"/>
@@ -101,7 +101,7 @@ export default function OrderPage() {
           <Button variant="outline" onClick={handleGoToShopping}>Keep Shopping</Button>
           {isPay ? (null) : (
             <div className="text-right">
-                      <p className="text-lg font-semibold">Subtotal : {totalPrice} $</p>
+                      <p className="text-lg font-semibold">Subtotal : {totalPrice}$</p>
                       <Button className="mt-2" onClick={() => setIsPay(!isPay)}>
                         <ShoppingCart className="mr-2 h-4 w-4" />
                         Proceed to Checkout

@@ -23,6 +23,7 @@ export const ProductList = () => {
             const data = await fetchProducts({ categoryId, sort, color, offset });
             dispatch(setProductList(data.products));
             dispatch(setTotal(data.total));
+            console.log(data)
         } catch (error) {
             console.error('Error fetching products:', error);
         }
@@ -53,13 +54,13 @@ export const ProductList = () => {
             </div>
             <div className="lg:flex lg:flex-wrap lg:gap-4 lg:justify-center">
                 {products.map((product) => (
-                     <Link to={`/shop/${gender}/${product.id}`}>
+                     <Link to={`/shop/${gender}/${product.id}`}  className=" transition-transform transform hover:scale-105 hover:shadow-lg">
                     <div key={product.id} className="flex flex-col items-center w-80">
                         <div>
                             {product.images && product.images.length > 0 ? (
-                                <img src={product.images[0].url} alt={product.name} />
+                                <img src={product.images[0].url} alt={product.name} className="hover:opacity-90 rounded-xl" />
                             ) : (
-                                <p>Yükleniyor...</p>
+                                <p><i class="fa-solid fa-spinner fa-spin"></i></p>
                             )}
                         </div>
                         <div className="flex flex-col items-center gap-2 pt-3 pb-16">

@@ -2,7 +2,7 @@ import { SET_CART, SET_PAYMENT, SET_ADDRESSES, ADD_TO_CART, INCREASE_COUNT, TOGG
 
 const initialState = {
   cart: [],
-  payment: {},
+  payment: [],
   addresses: [],
   isOpen: false,
   addressId: null,
@@ -25,7 +25,7 @@ const shoppingCartReducer = (state = initialState, action) => {
       };
       
     case SET_PAYMENT:
-      return { ...state, payment: action.payload };
+      return { ...state, payment: [...state.payment, action.payload] };
       
     case SET_ADDRESSES:
       console.log("adresbilgileri redux:", action.payload);

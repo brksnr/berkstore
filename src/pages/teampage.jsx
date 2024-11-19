@@ -4,14 +4,14 @@ export function TeamPage() {
     const isHidden = true;
     
     const teamMembers = [
-        { name: "Jacop Jones", role: "Mitsubishi", image: "/images/team/team1.png" },
-        { name: "Marvin McKinney", role: "Mitsubishi", image: "/images/team/team2.png" },
-        { name: "Ronald Richards", role: "Mitsubishi", image: "/images/team/team3.png" },
-        { name: "Jacop Jones", role: "Mitsubishi", image: "/images/team/team1.png" },
-        { name: "Marvin McKinney", role: "Mitsubishi", image: "/images/team/team2.png" },
-        { name: "Ronald Richards", role: "Mitsubishi", image: "/images/team/team3.png" },
-        { name: "Jacop Jones", role: "Mitsubishi", image: "/images/team/team1.png" },
-        { name: "Marvin McKinney", role: "Mitsubishi", image: "/images/team/team2.png" },
+        { name: "Gokhan Ozdemir", role: "Scrum Master", image: "/images/team/team6.jpeg" },
+        { name: "Çetin Erdem", role: "Full Stack Developer", image: "/images/team/team5.jpeg" },
+        { name: "Didem Demir", role: "Fullstack Developer", image: "/images/team/team4.jpeg" },
+        { name: "Özge Karabay", role: "Fullstack Developer", image: "/images/team/team7.jpeg" },
+        { name: "Ayşen Aydın", role: "Frontend Developer", image: "/images/team/team8.jpeg" },
+        { name: "Nida Türkay", role: "Frontend Developer", image: "/images/team/team9.jpeg" },
+        { name: "Mehmet Coşar", role: "Fullstack Developer", image: "/images/team/team10.jpeg" },
+        { name: "Berk Şener", role: "Fullstack Developer", image: "/images/team/team11.jpeg" },
         { name: "Ronald Richards", role: "Mitsubishi", image: "/images/team/team3.png" }
     ];
 
@@ -42,7 +42,7 @@ export function TeamPage() {
                                 <div key={groupIndex} className="flex flex-col gap-6 lg:gap-20">
                                     {group.map((member, index) => (
                                         <div key={index} className="flex gap-3">
-                                            <img src={member.image} alt={member.name} className="rounded-full" />
+                                            <img src={member.image} alt={member.name} className="rounded-full w-24" />
                                             <div>
                                                 <p className="h6">{member.name}</p>
                                                 <p className="grayPt">{member.role}</p>

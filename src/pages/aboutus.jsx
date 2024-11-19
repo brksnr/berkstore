@@ -69,7 +69,7 @@ export function AboutUsPage() {
                 </div>
 
                 <div className="flex justify-center my-24">
-                        <div>
+                        <div className="">
                             <VideoCard/>
                         </div>
                 </div>

@@ -29,6 +29,7 @@ export function CustomSelect({ setSort, setColor }) {
   };
     return (
         <>
+        <div className="flex flex-col gap-4 lg:flex-row">
          <Select onValueChange={handleValueChange} >
       <SelectTrigger className="w-[180px]">
         <SelectValue placeholder="Sort by:" />
@@ -58,6 +59,7 @@ export function CustomSelect({ setSort, setColor }) {
       </SelectContent>
     </Select>
     <Button onClick={handleFilterClick} variant="default" size="sm">Filter</Button>
+    </div>
         </>
     )
 }

@@ -44,18 +44,6 @@ export function ProductPage() {
     return (
         <>
         <NavLinks/>
-        <div className="pt-7 pb-12 flex gap-3 items-center justify-center bg-gray-100 grayP">
-            <p>Home</p>
-            <i class="fa-solid fa-angle-right"></i>
-            <p>Shop</p>
-        </div>
-        <div className="bg-gray-100">
-                <div>  
-                
-                </div>
-        
-        </div>
-
         <div className="flex gap-14 items-center justify-center my-10">
               <p className="grayP underline">Descripton</p>
               <p className="grayP">Additional Information</p>

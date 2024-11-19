@@ -49,8 +49,8 @@ export function NavLinks () {
     ? `https://www.gravatar.com/avatar/${emailHash}?s=200&d=identicon`
     : null; 
     
-    const pushLogin = () => {
-        history.push("/login")
+    const pushSignUp = () => {
+        history.push("/signup")
     }
 
     return (
@@ -77,7 +77,7 @@ export function NavLinks () {
         </div>
         <div className="flex justify-between p-4 items-center">
             <div className="flex items-center gap-24">
-                <h1 className="h2">BerkStore</h1>
+                <Link to="/"><h1 className="h2">BerkStore</h1></Link>
                 <div className=" hidden lg:flex gap-4 font-inter">
                 <NavigationMenu>
   <NavigationMenuList>
@@ -125,7 +125,7 @@ export function NavLinks () {
         </Link>      
     </NavigationMenuLink>
     <NavigationMenuLink asChild>
-        <Link  className={navigationMenuTriggerStyle()} to="/">
+        <Link  className={navigationMenuTriggerStyle()} to="/blog">
               Blog
         </Link>      
     </NavigationMenuLink>
@@ -135,8 +135,8 @@ export function NavLinks () {
         </Link>
     </NavigationMenuLink>
     <NavigationMenuLink asChild>
-        <Link  className={navigationMenuTriggerStyle()} to="/">
-              Pages
+        <Link  className={navigationMenuTriggerStyle()} to="/product">
+              Products
         </Link>
     </NavigationMenuLink>
   </NavigationMenuList>
@@ -182,10 +182,11 @@ export function NavLinks () {
                 </div>
             )}
             </div>
-            <div className="flex gap-3 lg:hidden">
-                <i className="fa-regular fa-user" onClick={pushLogin}></i>
+            <div className="flex gap-3 lg:hidden items-center">
+                <i className="fa-regular fa-user" onClick={pushSignUp}></i>
                 <i className="fa-solid fa-magnifying-glass"></i>
-                <i className="fa-solid fa-cart-shopping"></i>
+                <Link to="/order"><i className="fa-solid fa-cart-shopping flex gap-2 items-center" onClick={toggleCart}>
+                <button className='rounded-full border-bg-primary w-5 h-5 bg-blue-500 h-3 text-white font-thin text-xs bg-primary'>{cartControl.length}</button></i></Link>
                 <i onClick={toggleMenu}className="fa-solid fa-bars"></i>
             </div>
         </div>
@@ -193,9 +194,10 @@ export function NavLinks () {
                 <div className="flex flex-col items-center gap-8 text-inter text-gray-500 h3 py-16 lg:hidden">
                     <Link to="/"><p>Home</p></Link>
                     <Link to="/product"><p>Product</p></Link>
-                    <Link to="/"><p>Pricing</p></Link>
+                    <Link to="/aboutus"><p>About</p></Link>
                     <Link to="/contact"><p>Contact</p></Link>
                     <Link to="/shop"><p>Shop</p></Link>
+                    <Link to="/blog"><p>Blog</p></Link>
                 </div>
             )}
         </>

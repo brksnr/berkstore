@@ -24,9 +24,10 @@ import { toast } from "react-toastify";
 export default function ProductDetail() {
   const dispatch = useDispatch();
   const [activeColor, setActiveColor] = useState("blue");
-  const { productId } = useParams();
+  const { productId, gender, productName } = useParams();
   const product = useSelector(state => state.product.product);
   const cartControl = useSelector(state => state.shoppingCart.cart);
+  console.log(productId,gender,productName)
 
     const fetchProductData = async () => {
       try {

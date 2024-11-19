@@ -13,17 +13,18 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { setUser } from '../actions/clientActions'
 
 export default function LoginForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
-    defaultValues: {
-      remember: true
-    }
-  });
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const handleCheckboxChange = () => {
+    setRememberMe(!rememberMe); 
+  };
+
   const onSubmit = async (data) => {
-    console.log(data)
+    console.log("bakalım dataya:",data)
     try {
       setIsLoading(true);
       const response = await axios.post('https://workintech-fe-ecommerce.onrender.com/login', {
@@ -35,7 +36,7 @@ export default function LoginForm() {
         const token = userData.token;
         console.log("giriş başarılı", userData);
         
-        if (data.remember) {
+        if (rememberMe) {
           localStorage.setItem('token', token);
         } else {
           sessionStorage.setItem('token', token); 
@@ -90,7 +91,8 @@ export default function LoginForm() {
               {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
             </div>
             <div className="flex items-center space-x-2">
-              <Checkbox id="remember" {...register("remember")} />
+              <Checkbox id="remember" checked={rememberMe}
+          onClick={handleCheckboxChange} />
               <Label htmlFor="remember">Remember me</Label>
             </div>
             <Button type="submit" className="w-full" disabled={isLoading}>
